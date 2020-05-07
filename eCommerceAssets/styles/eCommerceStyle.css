@@ -47,7 +47,7 @@ input[type=submit]:hover {
 
 /* Two-column layout */
 .col {
-  float: left;
+	height: 10%;
   width: 50%;
   margin: auto;
   padding: 0 50px;

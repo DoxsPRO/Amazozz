@@ -4,7 +4,7 @@
 	<?php
 		require_once('database.php');
 		echo("DATABASE CONNESSO");
-//if (isset($_POST['register'])) {}
+	if (isset($_POST['register'])) {}
     $username = $_POST['userNew'] ;
     $password = $_POST['passNew'];
 	$password_ver = $_POST['passNewCon'];
