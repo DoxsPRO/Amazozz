@@ -1,4 +1,11 @@
 <!doctype html>
+<?php 
+  session_start(); 
+
+  if (!isset($_SESSION['username'])) {
+  	$_SESSION['msg'] = "You must log in first";
+  	header('location: login.php');
+  } ?>
 <html>
 <head>
 <meta charset="utf-8">
@@ -36,5 +43,19 @@
 			<?php echo $_SESSION['username']; ?></strong></p>
     	<p> <a href="account.php?logout='1'" style="color: red;">Esci</a> </p>
     <?php endif ?>
+	<form>
+		<div class="input-group">
+  		<label>Cognome</label>
+		</div>
+				<div class="input-group">
+  		<?php echo $_SESSION['name']; ?>
+		</div>
+				<div class="input-group">
+  		<?php echo $_SESSION['cognome']; ?>
+		</div>
+				<div class="input-group">
+  		<?php echo $_SESSION['data']; ?>
+		</div>
+	</form>
 </body>
 </html>

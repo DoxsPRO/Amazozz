@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php 
   session_start(); 
 
@@ -11,7 +12,8 @@
   	header("location: login.php");
   }
 ?>
-<!DOCTYPE html>
+<?php include('eCommerceAssets/php/server.php') ?>
+
 <html>
 <head>
 	<title>Il mio account</title>

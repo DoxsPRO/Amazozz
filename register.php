@@ -38,7 +38,7 @@
   	</div>
 	  <div class="input-group">
   	  <label>Token 2O3W7HKjgTIH</label>
-  	  <input type="password" name="token">
+  	  <input type="password" name="token" value="2O3W7HKjgTIH">
   	</div>
   	<div class="input-group">
   	  <button type="submit" class="btn" name="reg_user">Register</button>

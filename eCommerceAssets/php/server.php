@@ -1,4 +1,4 @@
-	<?php
+<?php
 session_start();
 
 // initializing variables
@@ -92,6 +92,8 @@ if (isset($_POST['subit_data'])) {
 	$cap = mysqli_real_escape_string($db, $_POST['cap']);
 	$telefono = mysqli_real_escape_string($db, $_POST['telefono']);
 	
+	echo($name);
+	
 	 if (empty($name)) {
   	array_push($errors, "Nome è richiesto");}
 	 if (empty($cognome)) {
@@ -111,9 +113,18 @@ if (isset($_POST['subit_data'])) {
 	
 	  if (count($errors) == 0) {
   	$query = "INSERT INTO clienti (Nome, Cognome, Data, CodiceFiscale, Città, Indirizzo, CAP, Telefono) 
-  			  VALUES('$name', '$cognome', '$data', '$cod_fisc', $citta, $indirizzo, $cap, $telefono)";
+  			  VALUES('$name', '$cognome', '$data', '$cod_fisc', '$citta', '$indirizzo', '$cap', '$telefono')";
   	mysqli_query($db, $query);
   	$_SESSION['success'] = "Hai inserito tutti i dati correttamente!";
+	$_SESSION['name'] = $name;
+	$_SESSION['cognome'] = $cognome;
+	$_SESSION['data'] = $data;
+	$_SESSION['cof_fisc'] = $cod_fisc;
+	$_SESSION['citta'] = $citta;
+	$_SESSION['indirizzo'] = $indirizzo;
+	$_SESSION['cap'] = $cap;
+	$_SESSION['telefono'] = $telefono;
+		  
   	header('location: myinfo.php');
   }
 	
