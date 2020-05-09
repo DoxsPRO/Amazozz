@@ -1,9 +1,9 @@
-<?php include('server.php') ?>
+<?php include('eCommerceAssets/php/server.php') ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title>Registration system PHP and MySQL</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="eCommerceAssets/styles/style.css">
 </head>
 <body>
   <div class="header">
@@ -11,7 +11,7 @@
   </div>
 	 
   <form method="post" action="login.php">
-  	<?php include('errors.php'); ?>
+  	<?php include('eCommerceAssets/php/errors.php'); ?>
   	<div class="input-group">
   		<label>Username</label>
   		<input type="text" name="username" >

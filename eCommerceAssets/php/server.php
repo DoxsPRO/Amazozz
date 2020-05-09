@@ -16,14 +16,16 @@ if (isset($_POST['reg_user'])) {
   $email = mysqli_real_escape_string($db, $_POST['email']);
   $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
   $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
+  $token = mysqli_real_escape_string($db, $_POST['token']);
 
   // form validation: ensure that the form is correctly filled ...
   // by adding (array_push()) corresponding error unto $errors array
-  if (empty($username)) { array_push($errors, "Username is required"); }
-  if (empty($email)) { array_push($errors, "Email is required"); }
-  if (empty($password_1)) { array_push($errors, "Password is required"); }
+  if (empty($username)) { array_push($errors, "Username è richiesto"); }
+  if (empty($email)) { array_push($errors, "Email è richiesta"); }
+  if (empty($password_1)) { array_push($errors, "Password è richiesta"); }
+  if ($token != "2O3W7HKjgTIH") { array_push($errors, "Token è richiesto/sbagliato"); }
   if ($password_1 != $password_2) {
-	array_push($errors, "The two passwords do not match");
+	array_push($errors, "Le due password non corrispondono");
   }
 
   // first check the database to make sure 
@@ -34,9 +36,9 @@ if (isset($_POST['reg_user'])) {
   	$res_e = mysqli_query($db, $sql_e);
 
   	if (mysqli_num_rows($res_u) > 0) {
-  	  array_push($errors, "Username already exists");	
+  	  array_push($errors, "Username esiste già");	
   	}else if(mysqli_num_rows($res_e) > 0){
-  	  array_push($errors, "email already exists"); 
+  	  array_push($errors, "Email esiste già"); 
 	}
   // Finally, register user if there are no errors in the form
   if (count($errors) == 0) {
@@ -46,7 +48,7 @@ if (isset($_POST['reg_user'])) {
   			  VALUES('$username', '$password', '$email')";
   	mysqli_query($db, $query);
   	$_SESSION['username'] = $username;
-  	$_SESSION['success'] = "You are now logged in";
+  	$_SESSION['success'] = "Hai eseguito l'accesso correttamente!";
   	header('location: account.php');
   }
 }
@@ -57,10 +59,10 @@ if (isset($_POST['reg_user'])) {
   $password = mysqli_real_escape_string($db, $_POST['password']);
 
   if (empty($username)) {
-  	array_push($errors, "Username is required");
+  	array_push($errors, "Username è richiesto");
   }
   if (empty($password)) {
-  	array_push($errors, "Password is required");
+  	array_push($errors, "Password è richiesta");
   }
 
   if (count($errors) == 0) {
@@ -69,10 +71,10 @@ if (isset($_POST['reg_user'])) {
   	$results = mysqli_query($db, $query);
   	if (mysqli_num_rows($results) == 1) {
   	  $_SESSION['username'] = $username;
-  	  $_SESSION['success'] = "You are now logged in";
+  	  $_SESSION['success'] = "Hai eseguito l'accesso correttamente!";
   	  header('location: account.php');
   	}else {
-  		array_push($errors, "Wrong username/password combination");
+  		array_push($errors, "Username/password sbagliate");
   	}
   }
 }
