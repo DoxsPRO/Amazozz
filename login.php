@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Registration system PHP and MySQL</title>
+  <title>Accedi</title>
   <link rel="stylesheet" type="text/css" href="eCommerceAssets/styles/style.css">
 </head>
 <body>

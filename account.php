@@ -42,10 +42,59 @@
 
     <!-- logged in user information -->
     <?php  if (isset($_SESSION['username'])) : ?>
-    	<p>Welcome <strong><?php echo $_SESSION['username']; ?></strong></p>
-    	<p> <a href="account.php?logout='1'" style="color: red;">logout</a> </p>
+    	<p>Benvenuto nel tuo primo accesso! Inserisci i tuoi dati <strong><?php echo $_SESSION['username']; ?></strong></p>
+    	<p> <a href="account.php?logout='1'" style="color: red;">Esci</a> </p>
     <?php endif ?>
 </div>
+	 <form method="post" action="account.php">
+  	<?php include('eCommerceAssets/php/errors.php'); ?>
+		 
+  	<div class="input-group">
+  		<label>Nome</label>
+  		<input type="text" name="name">
+  	</div>
+		 
+	<div class="input-group">
+  		<label>Cognome</label>
+  		<input type="text" name="cognome">
+  	</div>
+		 
+	<div class="input-group">
+  		<label>Data di nascita</label>
+  		<input type="date" name="data" >
+  	</div>
+	<div class="input-group">
+  		<label>Codice Fiscale</label>
+  		<input type="text" name="cod_fisc" >
+  	</div>
+		 
+	<div class="input-group">
+  		<label>Citta'</label>
+  		<input type="text" name="citta" >
+  	</div>
+		 
+	<div class="input-group">
+  		<label>Indirizzo</label>
+  		<input type="text" name="indirizzo" >
+  	</div>
+		 
+	<div class="input-group">
+  		<label>CAP</label>
+  		<input type="number" name="cap" >
+  	</div>
+		 
+	<div class="input-group">
+  		<label>Telefono</label>
+  		<input type="number" name="telefono" >
+  	</div>
+		 
+  	<div class="input-group">
+  		<button type="submit" class="btn" name="subit_data">Inserisci</button>		
+  	</div>
+		 <div class="input-group">
+		 <input type="reset">
+		 </div>
+  </form>
 		
 </body>
 </html>

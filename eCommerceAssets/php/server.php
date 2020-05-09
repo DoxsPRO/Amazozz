@@ -7,8 +7,11 @@ $email    = "";
 $errors = array(); 
 
 // connect to the database
-$db = mysqli_connect('localhost', 'root', '', 'sito');
-
+$db = mysqli_connect('localhost', 'ecommercegalilei', '', 'my_ecommercegalilei');
+// $db = mysqli_connect('localhost', 'root', '', 'sito');
+if ($db->connect_errno) {
+	array_push($errors,"Impossibile connettersi al server: " . $conn->connect_error);
+    }
 // REGISTER USER
 if (isset($_POST['reg_user'])) {
   // receive all input values from the form
@@ -78,6 +81,22 @@ if (isset($_POST['reg_user'])) {
   	}
   }
 }
+
+if (isset($_POST['subit_data'])) {
+	$name = mysqli_real_escape_string($db, $_POST['name']);
+	$cognome = mysqli_real_escape_string($db, $_POST['cognome']);
+	$data = mysqli_real_escape_string($db, $_POST['data']);
+	$cod_fisc = mysqli_real_escape_string($db, $_POST['cod_fisc']);
+	$citta = mysqli_real_escape_string($db, $_POST['citta']);
+	$indirizzo = mysqli_real_escape_string($db, $_POST['indirizzo']);
+	$cap = mysqli_real_escape_string($db, $_POST['cap']);
+	$telefono = mysqli_real_escape_string($db, $_POST['telefono']);
+	
+	 if (empty($name)) {
+  	array_push($errors, "Nome è richiesto");}
+	 if (empty($cognome)) {
+  	array_push($errors, "Cognome è richiesto");}
+  }
 
 ?>
 
