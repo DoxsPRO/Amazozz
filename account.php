@@ -14,7 +14,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Home</title>
+	<title>Il mio account</title>
 	<link rel="stylesheet" type="text/css" href="eCommerceAssets/styles/style.css">
 </head>
 <body>
