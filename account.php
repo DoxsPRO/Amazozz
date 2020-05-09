@@ -19,9 +19,14 @@
 </head>
 <body>
 
-<div class="header">
-	<h2>Home Page</h2>
-</div>
+<header> 
+    <!-- This is the header content. It contains Logo and links -->
+    <div id="logo"> <a href="index.html"><img src="eCommerceAssets/images/logoImage.png" alt="logo Amazoz" height="43" width="100"> </a>
+      <!-- Company Logo text --> 
+      </div>
+    <div id="headerLinks">
+		<a href="index.html" title="Home">Home</a>
+		<a href="" title="Cart">Carrello</a></div>
 <div class="content">
   	<!-- notification message -->
   	<?php if (isset($_SESSION['success'])) : ?>

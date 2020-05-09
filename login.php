@@ -6,9 +6,15 @@
   <link rel="stylesheet" type="text/css" href="eCommerceAssets/styles/style.css">
 </head>
 <body>
-  <div class="header">
-  	<h2>Login</h2>
-  </div>
+<header> 
+    <!-- This is the header content. It contains Logo and links -->
+    <div id="logo"> <a href="index.html"><img src="eCommerceAssets/images/logoImage.png" alt="logo Amazoz" height="43" width="100"></a>
+      <!-- Company Logo text --> 
+      </div>
+    <div id="headerLinks">
+		<a href="index.html" title="Home">Home</a>
+		<a href="register.php" title="Registrati">Registrati</a>
+		<a href="" title="Cart">Carrello</a></div>
 	 
   <form method="post" action="login.php">
   	<?php include('eCommerceAssets/php/errors.php'); ?>
