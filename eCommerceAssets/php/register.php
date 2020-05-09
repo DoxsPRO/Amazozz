@@ -4,10 +4,18 @@
 	<?php
 		require_once('database.php');
 		echo("DATABASE CONNESSO");
-	if (isset($_POST['register'])) {}
-    $username = $_POST['userNew'] ;
-    $password = $_POST['passNew'];
-	$password_ver = $_POST['passNewCon'];
+	
+
+
+	
+	if (isset($_POST['registrati'])) {}
+    	if (!isset($_SESSION['username'])) {
+    if (!is_array($_SESSION)) {
+        $_SESSION = [];
+    }}
+    $_SESSION['username'] = $username;
+    $password = $_POST['password'];
+	$password_ver = $_POST['password-rip'];
 	$email = $_POST['email'];
 	
 	if($password == $password_ver)
