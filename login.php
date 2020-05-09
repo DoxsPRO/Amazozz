@@ -4,6 +4,8 @@
 <head>
   <title>Accedi</title>
   <link rel="stylesheet" type="text/css" href="eCommerceAssets/styles/style.css">
+	<script>var __adobewebfontsappname__="dreamweaver"</script><script src="http://use.edgefonts.net/montserrat:n4:default;source-sans-pro:n2:default.js" type="text/javascript"></script>
+	<link rel="icon" href="eCommerceAssets\images\favicon.png" height="48" width="48"/>
 </head>
 <body>
 <header> 

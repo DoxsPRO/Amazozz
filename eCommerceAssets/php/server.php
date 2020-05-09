@@ -7,8 +7,8 @@ $email    = "";
 $errors = array(); 
 
 // connect to the database
-$db = mysqli_connect('localhost', 'ecommercegalilei', '', 'my_ecommercegalilei');
-// $db = mysqli_connect('localhost', 'root', '', 'sito');
+//$db = mysqli_connect('localhost', 'ecommercegalilei', '', 'my_ecommercegalilei');
+$db = mysqli_connect('localhost', 'root', '', 'sito');
 if ($db->connect_errno) {
 	array_push($errors,"Impossibile connettersi al server: " . $conn->connect_error);
     }
@@ -96,6 +96,27 @@ if (isset($_POST['subit_data'])) {
   	array_push($errors, "Nome è richiesto");}
 	 if (empty($cognome)) {
   	array_push($errors, "Cognome è richiesto");}
+		 if (empty($data)) {
+  	array_push($errors, "Data di nascita richiesta");}
+	 if (empty($cod_fisc)) {
+  	array_push($errors, "Codice fiscale è richiesto");}
+		 if (empty($citta)) {
+  	array_push($errors, "Città è richiesto");}
+	 if (empty($indirizzo)) {
+  	array_push($errors, "Indirizzo è richiesto");}
+		 if (empty($cap)) {
+  	array_push($errors, "Cap è richiesto");}
+	 if (empty($telefono)) {
+  	array_push($errors, "Telefono è richiesto");}
+	
+	  if (count($errors) == 0) {
+  	$query = "INSERT INTO clienti (Nome, Cognome, Data, CodiceFiscale, Città, Indirizzo, CAP, Telefono) 
+  			  VALUES('$name', '$cognome', '$data', '$cod_fisc', $citta, $indirizzo, $cap, $telefono)";
+  	mysqli_query($db, $query);
+  	$_SESSION['success'] = "Hai inserito tutti i dati correttamente!";
+  	header('location: myinfo.php');
+  }
+	
   }
 
 ?>
