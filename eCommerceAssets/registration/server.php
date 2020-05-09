@@ -28,20 +28,16 @@ if (isset($_POST['reg_user'])) {
 
   // first check the database to make sure 
   // a user does not already exist with the same username and/or email
-  $user_check_query = "SELECT * FROM credenziali WHERE Username='$username' OR Email='$email' LIMIT 1";
-  $result = mysqli_query($db, $user_check_query);
-  $user = mysqli_fetch_assoc($result);
-  
-  if ($user) { // if user exists
-    if ($user['username'] === $username) {
-      array_push($errors, "Username already exists");
-    }
+	$sql_u = "SELECT * FROM credenziali WHERE Username='$username'";
+  	$sql_e = "SELECT * FROM credenziali WHERE Email='$email'";
+  	$res_u = mysqli_query($db, $sql_u);
+  	$res_e = mysqli_query($db, $sql_e);
 
-    if ($user['email'] === $email) {
-      array_push($errors, "email already exists");
-    }
-  }
-
+  	if (mysqli_num_rows($res_u) > 0) {
+  	  array_push($errors, "Username already exists");	
+  	}else if(mysqli_num_rows($res_e) > 0){
+  	  array_push($errors, "email already exists"); 
+	}
   // Finally, register user if there are no errors in the form
   if (count($errors) == 0) {
   	$password = md5($password_1);//encrypt the password before saving in the database
