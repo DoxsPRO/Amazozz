@@ -44,9 +44,6 @@
     	<p> <a href="account.php?logout='1'" style="color: red;">Esci</a> </p>
     <?php endif ?>
 	<form>
-		<div class="input-group">
-  		<label>Cognome</label>
-		</div>
 				<div class="input-group">
   		<?php echo $_SESSION['name']; ?>
 		</div>
