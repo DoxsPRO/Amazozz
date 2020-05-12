@@ -109,7 +109,7 @@ if (isset($_POST['subit_data'])) {
 	 if (empty($telefono)) {
   	array_push($errors, "Telefono è richiesto");}
 	
-	//$newDate = date("Y-m-d", strtotime($data));
+	//$newDate = date("Y/m/d", strtotime($data));
 	
 	  if (count($errors) == 0) {
 	$last_id = $db->insert_id;
@@ -120,14 +120,11 @@ if (isset($_POST['subit_data'])) {
 	$results = mysqli_fetch_array($res_id);
 	
 	$temp = $results['max'];
-	//var_dump($res_id); // string '13' (length=2)
-	//$res_id= $res_id +0; // or $myVar+= 0
-	//var_dump($res_id); // int 13
-		  
-  	$query = "INSERT INTO clienti (Nome, Cognome, Data, CodiceFiscale, Città, Indirizzo, CAP, Telefono, CredenzialeID) 
+
+	$query = "INSERT INTO clienti (Nome, Cognome, Data, CodiceFiscale, Citta, Indirizzo, CAP, Telefono, CredenzialeID) 
   			  VALUES('$name', '$cognome', '$date', '$cod_fisc', '$citta', '$indirizzo', '$cap', '$telefono', '$temp')";
 		  
-  	mysqli_query($db, $query);
+  	mysqli_query($db, $query)or die(mysqli_error($db));
   	$_SESSION['success'] = "Hai inserito tutti i dati correttamente!";
 	$_SESSION['name'] = $name;
 	$_SESSION['cognome'] = $cognome;
