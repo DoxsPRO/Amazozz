@@ -73,6 +73,62 @@ if (isset($_POST['reg_user'])) {
   	$query = "SELECT * FROM credenziali WHERE Username='$username' AND Password='$password'";
   	$results = mysqli_query($db, $query);
   	if (mysqli_num_rows($results) == 1) {
+		//selezione CredenzialeID
+		$sql_id = "SELECT CredenzialeID AS max FROM credenziali WHERE Username='$username' AND Password='$password'";
+		$res_id = mysqli_query($db, $sql_id) or die(mysqli_error($db)); 
+		$results = mysqli_fetch_array($res_id);
+		$_SESSION['id'] = $results['max'];
+		$temp = $results['max'];
+		
+		//selezione nome
+		$sql_get = "SELECT Nome AS nameT FROM clienti WHERE CredenzialeID = '$temp'";
+		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
+		$results = mysqli_fetch_array($res_id);
+		
+		//selezione cognome
+		$sql_get = "SELECT Cognome AS cognomeT FROM clienti WHERE CredenzialeID = '$temp'";
+		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
+		$results = mysqli_fetch_array($res_id);
+		
+		//selezione data
+		$sql_get = "SELECT Data AS dataT FROM clienti WHERE CredenzialeID = '$temp'";
+		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
+		$results = mysqli_fetch_array($res_id);
+		$newDate = date("Y-m-d", strtotime($results['dataT']));
+		//selezione codice fiscale
+		$sql_get = "SELECT CodiceFiscale AS codfT FROM clienti WHERE CredenzialeID = '$temp'";
+		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
+		$results = mysqli_fetch_array($res_id);
+		
+		//selezione citta
+		$sql_get = "SELECT Citta AS cittaT FROM clienti WHERE CredenzialeID = '$temp'";
+		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
+		$results = mysqli_fetch_array($res_id);
+		
+		//selezione indirizzo
+		$sql_get = "SELECT Indirizzo AS indirizzoT FROM clienti WHERE CredenzialeID = '$temp'";
+		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
+		$results = mysqli_fetch_array($res_id);
+		
+		//selezione CAP
+		$sql_get = "SELECT CAP AS capT FROM clienti WHERE CredenzialeID = '$temp'";
+		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
+		$results = mysqli_fetch_array($res_id);
+		
+		//selezione telefono
+		$sql_get = "SELECT Telefono AS telefonoT FROM clienti WHERE CredenzialeID = '$temp'";
+		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
+		$results = mysqli_fetch_array($res_id);
+		
+	$_SESSION['name'] = $results['nameT'];
+	$_SESSION['cognome'] = $results['cognomeT'];
+	$_SESSION['data'] = $newData;
+	$_SESSION['cof_fisc'] = $results['codfT'];
+	$_SESSION['citta'] = $results['cittaT'];
+	$_SESSION['indirizzo'] = $results['indirizzoT'];
+	$_SESSION['cap'] = $results['capT'];
+	$_SESSION['telefono'] = $results['telefonoT'];
+		
   	  $_SESSION['username'] = $username;
   	  $_SESSION['success'] = "Hai eseguito l'accesso correttamente!";
   	  header('location: indexLog.php');
@@ -109,10 +165,9 @@ if (isset($_POST['subit_data'])) {
 	 if (empty($telefono)) {
   	array_push($errors, "Telefono è richiesto");}
 	
-	//$newDate = date("Y/m/d", strtotime($data));
+	$newDate = date("Y-m-d", strtotime($data));
 	
 	  if (count($errors) == 0) {
-	$last_id = $db->insert_id;
 
 	$sql_id = "SELECT MAX(CredenzialeID) AS max FROM credenziali";
 	$res_id = mysqli_query($db, $sql_id);
@@ -122,7 +177,7 @@ if (isset($_POST['subit_data'])) {
 	$temp = $results['max'];
 
 	$query = "INSERT INTO clienti (Nome, Cognome, Data, CodiceFiscale, Citta, Indirizzo, CAP, Telefono, CredenzialeID) 
-  			  VALUES('$name', '$cognome', '$date', '$cod_fisc', '$citta', '$indirizzo', '$cap', '$telefono', '$temp')";
+  			  VALUES('$name', '$cognome', '$newDate', '$cod_fisc', '$citta', '$indirizzo', '$cap', '$telefono', '$temp')";
 		  
   	mysqli_query($db, $query)or die(mysqli_error($db));
   	$_SESSION['success'] = "Hai inserito tutti i dati correttamente!";
