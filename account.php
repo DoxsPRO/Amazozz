@@ -25,12 +25,14 @@
 
 <header> 
     <!-- This is the header content. It contains Logo and links -->
-    <div id="logo"> <a href="index.html"><img src="eCommerceAssets/images/logoImage.png" alt="logo Amazoz" height="43" width="100"> </a>
+    <div id="logo"> <img src="eCommerceAssets/images/logoImage.png" alt="logo Amazoz" height="43" width="100">
       <!-- Company Logo text --> 
       </div>
     <div id="headerLinks">
-		<a href="index.html" title="Home">Home</a>
-		<a href="" title="Cart">Carrello</a></div>
+		<!--<a href="index.html" title="Home">Home</a>
+		<a href="" title="Cart">Carrello</a>-->
+		<a href="" title="sessID"><?php echo session_id();?></a>
+	</div>
 <div class="content">
   	<!-- notification message -->
   	<?php if (isset($_SESSION['success'])) : ?>

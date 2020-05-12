@@ -75,7 +75,7 @@ if (isset($_POST['reg_user'])) {
   	if (mysqli_num_rows($results) == 1) {
   	  $_SESSION['username'] = $username;
   	  $_SESSION['success'] = "Hai eseguito l'accesso correttamente!";
-  	  header('location: account.php');
+  	  header('location: indexLog.php');
   	}else {
   		array_push($errors, "Username/password sbagliate");
   	}
@@ -109,11 +109,24 @@ if (isset($_POST['subit_data'])) {
 	 if (empty($telefono)) {
   	array_push($errors, "Telefono è richiesto");}
 	
-	$newDate = date("Y-m-d", strtotime($data));
+	//$newDate = date("Y-m-d", strtotime($data));
 	
 	  if (count($errors) == 0) {
-  	$query = "INSERT INTO clienti (Nome, Cognome, Data, CodiceFiscale, Città, Indirizzo, CAP, Telefono) 
-  			  VALUES('$name', '$cognome', '$newDate', '$cod_fisc', '$citta', '$indirizzo', '$cap', '$telefono')";
+	$last_id = $db->insert_id;
+
+	$sql_id = "SELECT MAX(CredenzialeID) AS max FROM credenziali";
+	$res_id = mysqli_query($db, $sql_id);
+		  
+	$results = mysqli_fetch_array($res_id);
+	
+	$temp = $results['max'];
+	//var_dump($res_id); // string '13' (length=2)
+	//$res_id= $res_id +0; // or $myVar+= 0
+	//var_dump($res_id); // int 13
+		  
+  	$query = "INSERT INTO clienti (Nome, Cognome, Data, CodiceFiscale, Città, Indirizzo, CAP, Telefono, CredenzialeID) 
+  			  VALUES('$name', '$cognome', '$date', '$cod_fisc', '$citta', '$indirizzo', '$cap', '$telefono', '$temp')";
+		  
   	mysqli_query($db, $query);
   	$_SESSION['success'] = "Hai inserito tutti i dati correttamente!";
 	$_SESSION['name'] = $name;
@@ -124,6 +137,7 @@ if (isset($_POST['subit_data'])) {
 	$_SESSION['indirizzo'] = $indirizzo;
 	$_SESSION['cap'] = $cap;
 	$_SESSION['telefono'] = $telefono;
+	$_SESSION['id'] = $results['max'];
 		  
   	header('location: myinfo.php');
   }

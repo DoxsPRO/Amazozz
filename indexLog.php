@@ -1,4 +1,18 @@
 <!doctype html>
+<?php 
+  session_start(); 
+
+  if (!isset($_SESSION['username'])) {
+  	$_SESSION['msg'] = "Devi fare l'accesso prima!";
+  	header('location: login.php');
+  }
+
+ if (isset($_GET['logout'])) {
+  	session_destroy();
+  	unset($_SESSION['username']);
+  	header("location: login.php");
+  }
+?>
 <html>
 <head>
 <meta charset="utf-8">
@@ -17,7 +31,11 @@
     <div id="logo"> <img src="eCommerceAssets\images\logoImage.png" alt="logo Amazoz" height="43" width="100"> 
       <!-- Company Logo text --> 
       </div>
-    <div id="headerLinks"><a href="login.php" title="Login">Accedi</a><a href="register.php" title="Registrati">Registrati</a><a href="carrello.html" title="Cart">Carrello</a></div>
+    <div id="headerLinks">
+		<a href="myinfo.php" title="Account">Profilo</a>
+		<a href="carrello.html" title="Cart">Carrello</a>
+		<a  href="account.php?logout='1'" style="color: red;" title="sessID"><?php echo session_id();?></a>
+	  </div>
   </header>
 	<!--
   <section id="offer"> 
@@ -122,7 +140,7 @@
   <footer> 
     <!-- This is the footer with default 3 divs -->
     <div>
-      <p>Ciao</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam varius sem neque. Integer ornare.</p>
     </div>
     <div>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam varius sem neque. Integer ornare.</p>

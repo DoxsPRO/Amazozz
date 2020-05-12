@@ -16,7 +16,9 @@
     <div id="headerLinks">
 		<a href="index.html" title="Home">Home</a>
 		<a href="login.php" title="Login">Accedi</a>
-		<a href="" title="Cart">Carrello</a></div>
+		<a href="" title="Cart">Carrello</a>
+		<a href="" title="sessID"><?php echo session_id();?></a>
+	  </div>
 	
   <form method="post" action="register.php">
   	<?php include('eCommerceAssets/php/errors.php'); ?>
