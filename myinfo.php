@@ -76,7 +76,9 @@
 				<div class="input-group">
   		<?php echo $_SESSION['telefono']; ?>
 		</div>
-		
+		  	<div class="input-group">
+  		<button type="submit" class="btn" name="edit">Modifica dati</button>
+  		</div>
 		</div>
 	</form>
 </body>
