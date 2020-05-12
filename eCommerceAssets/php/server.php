@@ -83,51 +83,57 @@ if (isset($_POST['reg_user'])) {
 		//selezione nome
 		$sql_get = "SELECT Nome AS nameT FROM clienti WHERE CredenzialeID = '$temp'";
 		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
-		$results = mysqli_fetch_array($res_id);
+		$results = mysqli_fetch_array($res_get);
+		$_SESSION['name'] = $results['nameT'];
 		
 		//selezione cognome
 		$sql_get = "SELECT Cognome AS cognomeT FROM clienti WHERE CredenzialeID = '$temp'";
 		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
-		$results = mysqli_fetch_array($res_id);
+		$results = mysqli_fetch_array($res_get);
+		$_SESSION['cognome'] = $results['cognomeT'];
 		
 		//selezione data
 		$sql_get = "SELECT Data AS dataT FROM clienti WHERE CredenzialeID = '$temp'";
 		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
-		$results = mysqli_fetch_array($res_id);
+		$results = mysqli_fetch_array($res_get);
 		$newDate = date("Y-m-d", strtotime($results['dataT']));
+		$_SESSION['data'] = $newData;
+		
 		//selezione codice fiscale
 		$sql_get = "SELECT CodiceFiscale AS codfT FROM clienti WHERE CredenzialeID = '$temp'";
 		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
-		$results = mysqli_fetch_array($res_id);
-		
+		$results = mysqli_fetch_array($res_get);
+		$_SESSION['cod_fisc'] = $results['codfT'];
+
 		//selezione citta
 		$sql_get = "SELECT Citta AS cittaT FROM clienti WHERE CredenzialeID = '$temp'";
 		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
-		$results = mysqli_fetch_array($res_id);
+		$results = mysqli_fetch_array($res_get);
+		$_SESSION['citta'] = $results['cittaT'];
 		
 		//selezione indirizzo
 		$sql_get = "SELECT Indirizzo AS indirizzoT FROM clienti WHERE CredenzialeID = '$temp'";
 		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
-		$results = mysqli_fetch_array($res_id);
+		$results = mysqli_fetch_array($res_get);
+		$_SESSION['indirizzo'] = $results['indirizzoT'];
 		
 		//selezione CAP
 		$sql_get = "SELECT CAP AS capT FROM clienti WHERE CredenzialeID = '$temp'";
 		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
-		$results = mysqli_fetch_array($res_id);
+		$results = mysqli_fetch_array($res_get);
+		$_SESSION['cap'] = $results['capT'];
 		
 		//selezione telefono
 		$sql_get = "SELECT Telefono AS telefonoT FROM clienti WHERE CredenzialeID = '$temp'";
 		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
-		$results = mysqli_fetch_array($res_id);
-		
-	$_SESSION['name'] = $results['nameT'];
-	$_SESSION['cognome'] = $results['cognomeT'];
-	$_SESSION['data'] = $newData;
-	$_SESSION['cof_fisc'] = $results['codfT'];
-	$_SESSION['citta'] = $results['cittaT'];
-	$_SESSION['indirizzo'] = $results['indirizzoT'];
-	$_SESSION['cap'] = $results['capT'];
-	$_SESSION['telefono'] = $results['telefonoT'];
+		$results = mysqli_fetch_array($res_get);
+		$_SESSION['telefono'] = $results['telefonoT'];
+	
+	
+	
+	
+	
+	
 		
   	  $_SESSION['username'] = $username;
   	  $_SESSION['success'] = "Hai eseguito l'accesso correttamente!";
@@ -184,7 +190,7 @@ if (isset($_POST['subit_data'])) {
 	$_SESSION['name'] = $name;
 	$_SESSION['cognome'] = $cognome;
 	$_SESSION['data'] = $newDate;
-	$_SESSION['cof_fisc'] = $cod_fisc;
+	$_SESSION['cod_fisc'] = $cod_fisc;
 	$_SESSION['citta'] = $citta;
 	$_SESSION['indirizzo'] = $indirizzo;
 	$_SESSION['cap'] = $cap;

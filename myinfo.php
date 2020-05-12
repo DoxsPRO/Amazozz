@@ -50,6 +50,9 @@
     <?php endif ?>
 	<form>
 				<div class="input-group">
+  		<?php echo $_SESSION['id']; ?>
+		</div>
+				<div class="input-group">
   		<?php echo $_SESSION['name']; ?>
 		</div>
 				<div class="input-group">
@@ -57,10 +60,23 @@
 		</div>
 				<div class="input-group">
   		<?php echo $_SESSION['data']; ?>
-					
+		</div>	
 				<div class="input-group">
-  		<?php echo $_SESSION['id']; ?>
+  		<?php echo $_SESSION['cod_fisc']; ?>
 		</div>
+				<div class="input-group">
+  		<?php echo $_SESSION['citta']; ?>
+		</div>
+				<div class="input-group">
+  		<?php echo $_SESSION['indirizzo']; ?>
+				</div>
+				<div class="input-group">
+  		<?php echo $_SESSION['cap']; ?>
+		</div>
+				<div class="input-group">
+  		<?php echo $_SESSION['telefono']; ?>
+		</div>
+		
 		</div>
 	</form>
 </body>
