@@ -1,4 +1,5 @@
 <!doctype html>
+<?php include('eCommerceAssets/php/server.php') ?>
 <?php 
   session_start(); 
 
@@ -34,7 +35,8 @@
     <div id="headerLinks">
 		<a href="myinfo.php" title="Account">Profilo</a>
 		<a href="carrello.html" title="Cart">Carrello</a>
-		<a  href="account.php?logout='1'" style="color: red;" title="sessID"><?php echo session_id();?></a>
+		<a href="account.php?logout='1'" style="color: red;" title="sessID"><?php echo session_id();?></a>
+		<a><?php echo($_SESSION['count'])  ?></a>
 	  </div>
   </header>
 	<!--
@@ -74,45 +76,46 @@
       </div>
     </section>
     <section class="mainContent">
+	<form method="post" action="indexLog.php">
       <div class="productRow"><!-- Each product row contains info of 3 elements -->
         <article class="productInfo"><!-- Each individual product description -->
-          <div><img alt="sample" src="eCommerceAssets/images/200x200.png"></div>
-          <p class="price">$50</p>
-          <p class="productContent">Content holder </p>
-          <input type="button" name="button" value="Buy" class="buyButton">
+          <div><img alt="Monitor" src="eCommerceAssets/product/monitor.jpg"></div>
+          <p class="price">250€</p>
+          <p class="productContent">ASUS 144hz UltraHD 24"</p>
+          <input type="submit" name="add_cart" value="Buy" class="buyButton">
         </article>
         <article class="productInfo"><!-- Each individual product description -->
-          <div><img alt="sample" src="eCommerceAssets/images/200x200.png"></div>
-          <p class="price">$50</p>
-          <p class="productContent">Content holder</p>
-          <input type="button" name="button" value="Buy" class="buyButton">
+         <div><img alt="mouse" src="eCommerceAssets/product/mouse.jpg"></div>
+          <p class="price">100€</p>
+          <p class="productContent">Mouse Razer Viper Mini</p>
+          <input type="submit" name="add_cart" value="Buy" class="buyButton">
         </article>
         <article class="productInfo"> <!-- Each individual product description -->
-          <div><img alt="sample" src="eCommerceAssets/images/200x200.png"></div>
-          <p class="price">$50</p>
-          <p class="productContent">Content holder</p>
-          <input type="button" name="button" value="Buy" class="buyButton">
+          <div><img alt="RTX2070" src="eCommerceAssets/product/RTX-2070.jpg"></div>
+          <p class="price">489€</p>
+          <p class="productContent">MSI GeForce RTX 2070</p>
+          <input type="submit" name="add_cart" value="Buy" class="buyButton">
         </article>
       </div>
       <div class="productRow"> 
         <!-- Each product row contains info of 3 elements -->
         <article class="productInfo"> <!-- Each individual product description -->
-          <div><img alt="sample" src="eCommerceAssets/images/200x200.png"></div>
-          <p class="price">$50</p>
-          <p class="productContent">Content holder</p>
-          <input type="button" name="button" value="Buy" class="buyButton">
+          <div><img alt="s10" src="eCommerceAssets/product/samsungS10.jpg"></div>
+          <p class="price">670€</p>
+          <p class="productContent">Samsung S10</p>
+          <input type="submit" name="add_cart" value="Buy" class="buyButton">
         </article>
         <article class="productInfo"> <!-- Each individual product description -->
-          <div><img alt="sample" src="eCommerceAssets/images/200x200.png"></div>
-          <p class="price">$50</p>
-          <p class="productContent">Content holder</p>
-          <input type="button" name="button" value="Buy" class="buyButton">
+          <div><img alt="ram" src="eCommerceAssets/product/ram.jpg"></div>
+          <p class="price">45€</p>
+          <p class="productContent">Corsair Vengeance LPX</p>
+          <input type="submit" name="add_cart" value="Buy" class="buyButton">
         </article>
         <article class="productInfo"><!-- Each individual product description -->
-          <div><img alt="sample" src="eCommerceAssets/images/200x200.png"></div>
-          <p class="price">$50</p>
-          <p class="productContent">Content holder</p>
-          <input type="button" name="button" value="Buy" class="buyButton">
+          <div><img alt="ssd" src="eCommerceAssets/product/samsungSSD.jpg"></div>
+          <p class="price">88€</p>
+          <p class="productContent">Samsung MZ-76E500 EVO</p>
+          <input type="submit" name="add_cart" value="Buy" class="buyButton">
         </article>
       </div>
       <div class="productRow">
@@ -120,21 +123,22 @@
           <div><img alt="sample" src="eCommerceAssets/images/200x200.png"></div>
           <p class="price">$50</p>
           <p class="productContent">Content holder</p>
-          <input type="button" name="button" value="Buy" class="buyButton">
+          <input type="submit" name="add_cart" value="Buy" class="buyButton">
         </article>
         <article class="productInfo"><!-- Each individual product description -->
           <div><img alt="sample" src="eCommerceAssets/images/200x200.png"></div>
           <p class="price">$50</p>
           <p class="productContent">Content holder</p>
-          <input type="button" name="button" value="Buy" class="buyButton">
+          <input type="submit" name="add_cart" value="Buy" class="buyButton">
         </article>
         <article class="productInfo"><!-- Each individual product description -->
           <div><img alt="sample" src="eCommerceAssets/images/200x200.png"></div>
           <p class="price">$50</p>
           <p class="productContent">Content holder</p>
-          <input type="button" name="button" value="Buy" class="buyButton">
+          <input type="submit" name="add_cart" value="Buy" class="buyButton">
         </article>
       </div>
+	</form>
     </section>
   </div>
   <footer> 
