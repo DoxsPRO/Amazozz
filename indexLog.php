@@ -78,10 +78,10 @@
     <section class="mainContent">
 	<form method="post" action="indexLog.php">
       <div class="productRow"><!-- Each product row contains info of 3 elements -->
-        <article class="productInfo"><!-- Each individual product description -->
-          <div><img alt="Monitor" src="eCommerceAssets/product/monitor.jpg"></div>
-          <p class="price">250€</p>
-          <p class="productContent">ASUS 144hz UltraHD 24"</p>
+		<article class="productInfo"><!-- Each individual product description -->
+         <div><img alt="mouse" src="eCommerceAssets/product/mouse.jpg"></div>
+          <p class="price">100€</p>
+          <p class="productContent">Mouse Razer Viper Mini</p>
           <input type="submit" name="add_cart" value="Buy" class="buyButton">
         </article>
         <article class="productInfo"><!-- Each individual product description -->

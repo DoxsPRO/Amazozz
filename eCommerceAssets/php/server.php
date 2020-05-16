@@ -202,6 +202,9 @@ if (isset($_POST['subit_data'])) {
 	
   }
 
+if (isset($_POST['add_cart'])) {
+	
+}
 ?>
 
 <?php
