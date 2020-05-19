@@ -14,6 +14,8 @@
   	header("location: login.php");
   }
 
+$message = '';
+
 if(isset($_POST["add_to_cart"]))
 {
 	if(isset($_COOKIE["shopping_cart"]))
@@ -99,7 +101,6 @@ if(isset($_GET["remove"]))
 	</div>
 	';
 }
-
 if(isset($_GET["clearall"]))
 {
 	$message = '
@@ -112,17 +113,18 @@ if(isset($_GET["clearall"]))
 
 ?>
 <html>
-<head>
-<meta charset="utf-8">
-<title>Amazozz</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="eCommerceAssets\styles\eCommerceStyle.css" rel="stylesheet" type="text/css">
-<!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script>var __adobewebfontsappname__="dreamweaver"</script><script src="http://use.edgefonts.net/montserrat:n4:default;source-sans-pro:n2:default.js" type="text/javascript"></script>
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<head>
+	<meta charset="utf-8">
+	<title>Amazozz</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="eCommerceAssets\styles\eCommerceStyle.css" rel="stylesheet" type="text/css">
+	<!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script>var __adobewebfontsappname__="dreamweaver"</script>
+	<script src="http://use.edgefonts.net/montserrat:n4:default;source-sans-pro:n2:default.js" type="text/javascript"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<link rel="icon" href="eCommerceAssets\images\favicon.png" height="48" width="48"/>
-</head>
+	</head>
 
 <body>
 <!--<div id="mainWrapper"> -->
@@ -175,26 +177,13 @@ if(isset($_GET["clearall"]))
       </div>
     </section>
     <section class="mainContent">
-		
 	<form method="post" action="indexLog.php">
       <div class="productRow"><!-- Each product row contains info of 3 elements -->
 		<article class="productInfo"><!-- Each individual product description -->
          <div><img alt="mouse" src="eCommerceAssets/product/mouse.jpg"></div>
           <p class="price">100€</p>
           <p class="productContent">Mouse Razer Viper Mini</p>
-          <input type="submit" name="add_cart" value="Buy" class="buyButton">
-        </article>
-        <article class="productInfo"><!-- Each individual product description -->
-         <div><img alt="mouse" src="eCommerceAssets/product/mouse.jpg"></div>
-          <p class="price">100€</p>
-          <p class="productContent">Mouse Razer Viper Mini</p>
-          <input type="submit" name="add_cart" value="Buy" class="buyButton">
-        </article>
-        <article class="productInfo"> <!-- Each individual product description -->
-          <div><img alt="RTX2070" src="eCommerceAssets/product/RTX-2070.jpg"></div>
-          <p class="price">489€</p>
-          <p class="productContent">MSI GeForce RTX 2070</p>
-          <input type="submit" name="add_cart" value="Buy" class="buyButton">
+          <input type="submit" name="add_cart" value="Buy" class="buyButton">		
         </article>
       </div>
       <div class="productRow"> 

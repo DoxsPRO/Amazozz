@@ -1,0 +1,17 @@
+/* CSS Document */
+
+.center {
+	font-family: 'Montserrat', sans-serif;
+	position: absolute;
+ 	text-align: center;
+	width: 700px;
+	height: 300px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+.center .sott
+{
+	font-size: 10px;
+}
