@@ -1,11 +1,10 @@
 <?php
 session_start();
-
 // initializing variables
 $username = "";
 $email    = "";
 $errors = array(); 
-
+ 
 // connect to the database
 //$db = mysqli_connect('localhost', 'ecommercegalilei', '', 'my_ecommercegalilei');
 $db = mysqli_connect('localhost', 'root', '', 'sito');
@@ -57,7 +56,7 @@ if (isset($_POST['reg_user'])) {
 }
 	// ... 
 	
-	if (isset($_POST['login_user'])) {
+if (isset($_POST['login_user'])) {
   $username = mysqli_real_escape_string($db, $_POST['username']);
   $password = mysqli_real_escape_string($db, $_POST['password']);
 
@@ -129,16 +128,16 @@ if (isset($_POST['reg_user'])) {
 		$results = mysqli_fetch_array($res_get);
 		$_SESSION['telefono'] = $results['telefonoT'];
 	
-	
-	
-	
-	
-	
 		
-  	  $_SESSION['username'] = $username;
-  	  $_SESSION['success'] = "Hai eseguito l'accesso correttamente!";
-  	  header('location: indexLog.php');
-  	}else {
+  	  	$_SESSION['username'] = $username;
+  	  	$_SESSION['success'] = "Hai eseguito l'accesso correttamente!";
+		
+		$account_info = array($username,$name,$cognome);
+		setcookie('info', serialize($account_info), time() + (86400 * 30));
+		
+  	  	header('location: indexLog.php');
+  		}
+	  else {
   		array_push($errors, "Username/password sbagliate");
   	}
   }
@@ -202,9 +201,6 @@ if (isset($_POST['subit_data'])) {
 	
   }
 
-if (isset($_POST['add_cart'])) {
-	
-}
 ?>
 
 <?php

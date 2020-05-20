@@ -1,14 +1,18 @@
 <?php 
 
 //index.php
+session_start();
+
+  if (!isset($_SESSION['username'])) {
+  	$_SESSION['msg'] = "Devi fare l'accesso prima!";
+  	header('location: login.php');
+  }
 
 $connect = new PDO("mysql:host=localhost;dbname=sito", "root", "");
 
-
 $message = '';
 
-if(isset($_POST["add_to_cart"]))
-	
+if(isset($_POST["add_to_cart"]))	
 {
 	if(isset($_COOKIE["shopping_cart"]))
 	{
@@ -104,6 +108,11 @@ if(isset($_GET["clearall"]))
 	';
 }
 
+ if (isset($_GET['logout'])) {
+  	session_destroy();
+  	unset($_SESSION['username']);
+  	header("location: login.php");
+  }
 
 ?>
 <!DOCTYPE html>
@@ -121,8 +130,20 @@ if(isset($_GET["clearall"]))
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="eCommerceAssets/styles/shopping.css"/>
 	</head>
 	<body>
+		<header> 
+			<!-- This is the header content. It contains Logo and links -->
+			<div id="logo"> 
+				<img src="eCommerceAssets/images/logoImage.png" alt="logo Amazoz" height="43" width="100"> 
+			  	<!-- Company Logo text --> 
+			 </div>
+			<div id="headerLinks">
+				<a href="myinfo.php" title="Account">Profilo</a>
+				<a href="account.php?logout='1'" style="color: red;" title="sessID"><?php echo session_id();?></a>
+			  </div>
+		 </header>
 		<br />
 		<div class="container">
 			<br />
@@ -213,7 +234,7 @@ if(isset($_GET["clearall"]))
 			</table>
 			</div>
 			<div>
-				<form action="checkoutPage.php">
+				<form method="post" action="checkoutPage.php">
 					<input type="submit" name="checkout" style="margin-top:5px;background-color: orange; border-color: orange;" class="btn btn-success" value="Procedi all'acquisto" />
 				</form>
 			</div>

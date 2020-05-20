@@ -5,7 +5,17 @@
   if (!isset($_SESSION['username'])) {
   	$_SESSION['msg'] = "You must log in first";
   	header('location: login.php');
-  } ?>
+  }
+	$data_info = unserialize($_COOKIE['info'], ["allowed_classes" => false]);
+
+ if (isset($_GET['logout'])) {
+  	session_destroy();
+	unset($_COOKIE['info']);
+  	unset($_SESSION['username']);
+  	header("location: login.php");
+  }
+?>
+
 <html>
 <head>
 <meta charset="utf-8">
@@ -75,6 +85,9 @@
 		</div>
 				<div class="input-group">
   		<?php echo $_SESSION['telefono']; ?>
+		</div>
+						<div class="input-group">
+  		<?php echo implode(" ",$data_info); ?>
 		</div>
 		  	<div class="input-group">
   		<button type="submit" class="btn" name="edit">Modifica dati</button>
