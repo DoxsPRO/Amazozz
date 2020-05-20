@@ -36,13 +36,13 @@ input:hover,
 
 /* style the submit button */
 input[type=submit] {
-  background-color: #4CAF50;
+  background-color: orange;
   color: white;
   cursor: pointer;
 }
 
 input[type=submit]:hover {
-  background-color: #45a049;
+  background-color: orange;
 }
 
 /* Two-column layout */

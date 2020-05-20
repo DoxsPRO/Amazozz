@@ -147,7 +147,7 @@ if(isset($_GET["clearall"]))
 						<input type="hidden" name="hidden_name" value="<?php echo $row["Nome"]; ?>" />
 						<input type="hidden" name="hidden_price" value="<?php echo $row["Prezzo"]; ?>" />
 						<input type="hidden" name="hidden_id" value="<?php echo $row["ProdottoID"]; ?>" />
-						<input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-success" value="Add to Cart" />
+						<input type="submit" name="add_to_cart" style="margin-top:5px;background-color: orange; border-color: orange;" class="btn btn-success" value="Acquista" />
 					</div>
 				</form>
 			</div>
