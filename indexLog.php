@@ -4,9 +4,11 @@
 
 $connect = new PDO("mysql:host=localhost;dbname=sito", "root", "");
 
+
 $message = '';
 
 if(isset($_POST["add_to_cart"]))
+	
 {
 	if(isset($_COOKIE["shopping_cart"]))
 	{
@@ -87,7 +89,7 @@ if(isset($_GET["remove"]))
 	$message = '
 	<div class="alert alert-success alert-dismissible">
 		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-		Item removed from Cart
+		Prodotto rimosso dal carrello
 	</div>
 	';
 }
@@ -97,7 +99,7 @@ if(isset($_GET["clearall"]))
 	$message = '
 	<div class="alert alert-success alert-dismissible">
 		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-		Your Shopping Cart has been clear...
+		Il tuo carello è vuoto
 	</div>
 	';
 }
@@ -184,17 +186,17 @@ if(isset($_GET["clearall"]))
 				<tr>
 					<td><?php echo $values["item_name"]; ?></td>
 					<td><?php echo $values["item_quantity"]; ?></td>
-					<td>$ <?php echo $values["item_price"]; ?></td>
-					<td>$ <?php echo number_format($values["item_quantity"] * $values["item_price"], 2);?></td>
-					<td><a href="indexLog.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span class="text-danger">Remove</span></a></td>
+					<td><?php echo $values["item_price"]; ?> €</td>
+					<td><?php echo number_format($values["item_quantity"] * $values["item_price"], 2);?> €</td>
+					<td><a href="indexLog.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span class="text-danger">Rimuovi</span></a></td>
 				</tr>
 			<?php	
 					$total = $total + ($values["item_quantity"] * $values["item_price"]);
 				}
 			?>
 				<tr>
-					<td colspan="3" align="right">Total</td>
-					<td align="right">$ <?php echo number_format($total, 2); ?></td>
+					<td colspan="3" align="right">Totale</td>
+					<td align="right"><?php echo number_format($total, 2); ?> €</td>
 					<td></td>
 				</tr>
 			<?php
@@ -209,6 +211,11 @@ if(isset($_GET["clearall"]))
 			}
 			?>
 			</table>
+			</div>
+			<div>
+				<form action="checkoutPage.php">
+					<input type="submit" name="checkout" style="margin-top:5px;background-color: orange; border-color: orange;" class="btn btn-success" value="Procedi all'acquisto" />
+				</form>
 			</div>
 		</div>
 		<br />
