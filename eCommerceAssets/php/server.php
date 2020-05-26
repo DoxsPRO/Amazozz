@@ -132,8 +132,7 @@ if (isset($_POST['login_user'])) {
   	  	$_SESSION['username'] = $username;
   	  	$_SESSION['success'] = "Hai eseguito l'accesso correttamente!";
 		
-		$account_info = array($username,$name,$cognome);
-		setcookie('info', serialize($account_info), time() + (86400 * 30));
+		setcookie('info', $username, time() + (86400 * 30));
 		
   	  	header('location: indexLog.php');
   		}
