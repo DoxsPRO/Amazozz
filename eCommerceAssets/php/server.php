@@ -258,16 +258,13 @@ if (isset($_POST['pagamento']))
 	
 	if (count($errors) == 0) {
 		
-		//$sql_id = "SELECT CredenzialeID AS max FROM credenziali WHERE Username='$username' AND Password='$password'";
-		//$res_id = mysqli_query($db, $sql_id) or die(mysqli_error($db)); 
-		//$results = mysqli_fetch_array($res_id);
+		
 		$id = $_SESSION['id'];
-		echo $id;
 		
 		$query = "SELECT ClienteID AS customerT FROM clienti WHERE CredenzialeID = '$id'";
 		$res_id = mysqli_query($db, $query);	  
 		$results = mysqli_fetch_array($res_id);
-		$customer = $results['customerT'];
+		$customer = $results['customerT']; //id del cliente
 		
 		$OGGI = date("Y/m/d");
 		
@@ -300,7 +297,13 @@ if (isset($_POST['pagamento']))
 			$query = "UPDATE prodotti SET Quantita = '$quantita_prod' WHERE ProdottoID = '$item_id';";
 			mysqli_query($db, $query) or die(mysqli_error($db));
 		}
-
+		
+		//salvo le informazioni della carta SELECT EXTRACT(YEAR_MONTH FROM "2017-06-15");
+		$query = "INSERT INTO carte (NumCarta, Proprietario, Scadenza, CVV2, ClienteID) VALUES ('$cardnumber', '$cardname', '$expmonth', '$cvv', '$customer')";
+		
+ 		mysqli_query($db, $query) or die(mysqli_error($db));
+		
+		header('location: indexLog.php');
 	}
 }
 

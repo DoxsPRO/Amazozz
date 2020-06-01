@@ -3,3 +3,5 @@ Lista delle cose da fare
 1) Controllare se l'inserimento dei dati è corretto nei form
 2) Aggiungiere il peso ai prodotti
 3) Aggiungere storico ordini per cliente
+4) Implementare privacy e sicurezza
+5) Formattazione nome prodotti
