@@ -29,7 +29,7 @@
 		<div class="row">
 		  <div class="col-75">
 			<div class="container">
-			  <form method="post" action="/action_page.php">
+			  <form method="post" action="checkoutPage.php">
 
 				<div class="row">
 				  <div class="col-50">
@@ -37,8 +37,8 @@
 					<label for="fname"><i class="fa fa-user"></i> Nome</label>
 					<input type="text" id="fname" name="fullname" value="<?php echo $_SESSION['name'].' '.$_SESSION['cognome'];?>">
 					<label for="email"><i class="fa fa-envelope"></i> Email</label>
-					<input type="text" id="email" name="email" >
-					 <label for="fname"><i class="fa fa-phone"></i> Telefono</label>
+					<input type="text" id="email" name="email" value="<?php echo $_SESSION['email'];?>" >
+					<label for="fname"><i class="fa fa-phone"></i> Telefono</label>
 					<input type="text" id="tel" name="phone" value="<?php echo $_SESSION['telefono'];?>">
 					<label for="adr"><i class="fa fa-address-card-o"></i> Indirizzo</label>
 					<input type="text" id="adr" name="address" value="<?php print $_SESSION['indirizzo'];?>">
@@ -52,7 +52,7 @@
 					  </div>
 					  <div class="col-50">
 						<label for="zip">CAP</label>
-						<input type="text" id="zip" name="zip" value=<?php echo $_SESSION['cap']?>>
+						<input type="text" id="zip" name="zip" value="<?php echo $_SESSION['cap']?>">
 					  </div>
 					</div>
 				  </div>
@@ -69,11 +69,11 @@
 					<label for="cname">Nome titolare</label>
 					<input type="text" id="cname" name="cardname">
 					<label for="ccnum">Numero carta</label>
-					<input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+					<input type="text" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" maxlength="19">
 					<label for="expmonth">Mese di scadenza</label>
             		<input type="month" id="expmonth" name="expmonth">
 					<label for="cvv">CVV</label>
-                	<input type="text" id="cvv" name="cvv" placeholder="352">
+                	<input type="text" id="cvv" name="cvv" placeholder="352" maxlength="3">
 				  </div>
 
 				</div>
