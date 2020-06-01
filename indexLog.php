@@ -50,7 +50,7 @@ if(isset($_POST["add_to_cart"]))
 
 	
 	$item_data = json_encode($cart_data);
-	setcookie('shopping_cart', $item_data, time() + (86400 * 30));
+	setcookie('shopping_cart', $item_data, time() + (1800));
 	header("location:indexLog.php?success=1");
 }
 
@@ -66,14 +66,14 @@ if(isset($_GET["action"]))
 			{
 				unset($cart_data[$keys]);
 				$item_data = json_encode($cart_data);
-				setcookie("shopping_cart", $item_data, time() + (86400 * 30));
+				setcookie("shopping_cart", $item_data, time() + (1800));
 				header("location:indexLog.php?remove=1");
 			}
 		}
 	}
 	if($_GET["action"] == "clear")
 	{
-		setcookie("shopping_cart", "", time() - 3600);
+		setcookie("shopping_cart", "", time() - 1800);
 		header("location:indexLog.php?clearall=1");
 	}
 }
@@ -83,7 +83,7 @@ if(isset($_GET["success"]))
 	$message = '
 	<div class="alert alert-success alert-dismissible">
 	  	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-	  	Item Added into Cart
+	  	Oggetto aggiunto al carrello
 	</div>
 	';
 }

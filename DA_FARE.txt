@@ -5,3 +5,5 @@ Lista delle cose da fare
 3) Aggiungere storico ordini per cliente
 4) Implementare privacy e sicurezza
 5) Formattazione nome prodotti
+6) Controllo quantità magazzino
+7) Gestione duplicata carta

@@ -51,6 +51,7 @@ if (isset($_POST['reg_user'])) {
   	mysqli_query($db, $query);
   	$_SESSION['username'] = $username;
   	$_SESSION['success'] = "Hai eseguito l'accesso correttamente!";
+	 $_SESSION['email'] = $email;
   	header('location: account.php');
   }
 }
