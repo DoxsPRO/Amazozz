@@ -69,7 +69,7 @@
 					<label for="cname">Nome titolare</label>
 					<input type="text" id="cname" name="cardname">
 					<label for="ccnum">Numero carta</label>
-					<input type="text" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" maxlength="19">
+					<input type="text" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" value="1111-2222-3333-4444" maxlength="19">
 					<label for="expmonth">Mese di scadenza</label>
             		<input type="month" id="expmonth" name="expmonth">
 					<label for="cvv">CVV</label>
