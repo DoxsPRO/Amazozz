@@ -200,6 +200,25 @@ if (isset($_POST['subit_data'])) {
 	
   }
 
+if (isset($_POST['pagamento']))
+{
+	//infomazioni spedizione
+	$firstname = mysqli_real_escape_string($db, $_POST['firstname']);
+	$lastname = mysqli_real_escape_string($db, $_POST['lastname']);
+	$email = mysqli_real_escape_string($db, $_POST['email']);
+	$phone = mysqli_real_escape_string($db, $_POST['phone']);
+	$address = mysqli_real_escape_string($db, $_POST['address']);
+	$city = mysqli_real_escape_string($db, $_POST['city']);
+	$state = mysqli_real_escape_string($db, $_POST['state']);
+	$zip = mysqli_real_escape_string($db, $_POST['zip']);
+	
+	$phone = mysqli_real_escape_string($db, $_POST['phone']);
+	
+	 if (empty($firstname)) { 
+		 array_push($errors, "Username è richiesto"); 
+	 }
+}
+
 ?>
 
 <?php

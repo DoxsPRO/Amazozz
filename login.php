@@ -20,6 +20,7 @@
 		<a href="" title="sessID"><?php echo session_id();?></a>
 	 </div>
   <form method="post" action="login.php">
+	  
   	<?php include('eCommerceAssets/php/errors.php'); ?>
   	<div class="input-group">
   		<label>Username</label>
