@@ -277,16 +277,28 @@ if (isset($_POST['pagamento']))
 		
 		foreach($cart_data as $keys => $values)
 		{	
-
+			//prendo le informazioni dal carrello
 			$item_quantity = $values["item_quantity"]; 
 			$item_name = $values["item_name"];
 			$item_id = $values["item_id"];
 			$tot = number_format($values["item_quantity"] * $values["item_price"], 2);
 			
+			//inserimento nella tabella ordini
 			$query = "INSERT INTO ordini (ProdottoID, ClienteID, NomeCliente, EmailSpedizione,	TelefonoSpedizione, IndirizzoSpedizione, CittaSpedizione, ProvinciaSpedizione, CapSpedizione ,NomeProdotto, NumProdotti, DataOrdine, TotaleOrdine, TotalePeso) 
 			VALUES ('$item_id', '$customer', '$fullname', '$email', '$phone', '$address', '$city', '$state', '$zip', '$item_name',	'$item_quantity', '$OGGI' ,'$tot', 0)";
-			
   			mysqli_query($db, $query) or die(mysqli_error($db));
+			
+			//prendo la quantità del prodotto
+			$query = "SELECT Quantita AS quantT FROM prodotti WHERE ProdottoID = '$item_id'";
+			$res_id = mysqli_query($db, $query);	  
+			$results = mysqli_fetch_array($res_id);
+			$quantita_prod = $results['quantT'];
+			
+			$quantita_prod = $quantita_prod - $item_quantity;
+			
+			//diminuisco la quantità del prodotto comprato
+			$query = "UPDATE prodotti SET Quantita = '$quantita_prod' WHERE ProdottoID = '$item_id';";
+			mysqli_query($db, $query) or die(mysqli_error($db));
 		}
 
 	}
