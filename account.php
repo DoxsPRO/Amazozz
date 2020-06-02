@@ -15,18 +15,13 @@
 
 <html>
 <head>
+	<meta charset="utf-8">
 	<title>Il mio account</title>
 	<link rel="stylesheet" type="text/css" href="eCommerceAssets/styles/style.css">
 	<script>var __adobewebfontsappname__="dreamweaver"</script><script src="http://use.edgefonts.net/montserrat:n4:default;source-sans-pro:n2:default.js" type="text/javascript"></script>
 	<link rel="icon" href="eCommerceAssets\images\favicon.png" height="48" width="48"/>
 </head>
 <body>
-
-<header> 
-    <!-- This is the header content. It contains Logo and links -->
-    <div id="logo"> <img src="eCommerceAssets/images/logoImage.png" alt="logo Amazoz" height="43" width="100">
-      <!-- Company Logo text --> 
-      </div>
 <div class="content">
   	<!-- notification message -->
   	<?php if (isset($_SESSION['success'])) : ?>
@@ -50,13 +45,13 @@
   	<?php include('eCommerceAssets/php/errors.php'); ?>
 		 
   	<div class="input-group">
-  		<label>Nome</label>
-  		<input type="text" name="name">
+  		<label>Nome completo</label>
+  		<input type="text" name="name" pattern="[A-Za-z\s]{2,}" maxlength="50">
   	</div>
 		 
 	<div class="input-group">
   		<label>Cognome</label>
-  		<input type="text" name="cognome">
+  		<input type="text" name="cognome" pattern="[A-Za-z]{1,}" maxlength="50">
   	</div>
 		 
 	<div class="input-group">
@@ -65,27 +60,32 @@
   	</div>
 	<div class="input-group">
   		<label>Codice Fiscale</label>
-  		<input type="text" name="cod_fisc" >
+  		<input type="text" name="cod_fisc" pattern="[A-Za-z0-9]{16}" maxlength="16">
   	</div>
 		 
 	<div class="input-group">
-  		<label>Citta'</label>
-  		<input type="text" name="citta" >
+  		<label>Provincia</label>
+  		<input type="text" name="provincia" pattern="[A-Za-z\s]{3,}" maxlength="50" title="Inserisci il nome completo della provincia">
+  	</div>		 
+
+	<div class="input-group">
+  		<label>Città</label>
+  		<input type="text" name="citta" pattern="[A-Za-z\s]{1,}" maxlength="50">
   	</div>
 		 
 	<div class="input-group">
   		<label>Indirizzo</label>
-  		<input type="text" name="indirizzo" >
+  		<input type="text" name="indirizzo" value="Via " pattern="[A-Za-z0-9\s]{1,}" maxlength="50" title="Non inserie caratteri speciali!">
   	</div>
 		 
 	<div class="input-group">
   		<label>CAP</label>
-  		<input type="number" name="cap" >
+  		<input type="text" name="cap" pattern="[0-9]{5}" maxlength="5">
   	</div>
 		 
 	<div class="input-group">
   		<label>Telefono</label>
-  		<input type="number" name="telefono" pattern="[A-Z]{20}">
+  		<input type="text" name="telefono" pattern="[0-9]{11}" maxlength="11" title="Non inserie caratteri speciali!">
   	</div>
 		 
   	<div class="input-group">

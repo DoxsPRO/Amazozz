@@ -28,8 +28,7 @@
 	<header> 
     <!-- This is the header content. It contains Logo and links -->
     <div id="logo"> 
-		<a href="indexLog.php">
-			<img src="eCommerceAssets/images/logoImage.png" alt="logo Amazoz" height="43" width="100">
+		<a href="indexLog.php"><img src="eCommerceAssets/images/logoImage.png" alt="logo Amazoz" height="43" width="100">
 		</a>
       <!-- Company Logo text --> 
       </div>
@@ -37,7 +36,9 @@
 		<a href="indexLog.php" title="Home">Home</a>
 		<a href="checkoutPage.php" title="Cart">Carrello</a>
 		<a href="account.php?logout='1'" style="color: red;" title="sessID">Esci</a>
+		<a title=""></a>
 		</div>
+	</header> 
 <div class="content">
   	<!-- notification message -->
   	<?php if (isset($_SESSION['success'])) : ?>

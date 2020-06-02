@@ -5,7 +5,10 @@
   padding: 0px;
 }
 body {
-  font-size: 120%;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
   background: #F8F8FF;
 }
 
@@ -45,7 +48,7 @@ header {
 form, .content {
   width: 30%;
  margin: 0px auto;
-  padding: 20px;
+  padding: 50px;
   border: 1px solid #B0C4DE;
   background: white;
   border-radius: 0px 0px 10px 10px;
@@ -89,4 +92,13 @@ form, .content {
   background: #dff0d8; 
   border: 1px solid #3c763d;
   margin-bottom: 20px;
+}
+
+.field-icon {
+  float: right;
+  margin-left: -25px;
+ margin-right: 10px;
+  margin-top: -30px;
+  position: relative;
+  z-index: 2;
 }

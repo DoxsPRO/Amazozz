@@ -142,6 +142,7 @@ if(isset($_GET["clearall"]))
 			<div id="headerLinks">
 				<a href="myinfo.php" title="Account">Profilo</a>
 				<a href="account.php?logout='1'" style="color: red;" title="sessID">Esci</a>
+				<a title=""></a>
 			  </div>
 		 </header>
 		<br />

@@ -1,10 +1,16 @@
 Lista delle cose da fare
 
-1) Controllare se l'inserimento dei dati è corretto nei form (francesco)
-2) Controllo sicurezza password
 3) Aggiungere storico ordini per cliente
 4) Implementare privacy e sicurezza
 5) Formattazione nome prodotti (stefano)
 6) Controllo quantità magazzino
 7) Gestione duplicata carta
 8) Scadenza carta di credito
+9) correzione logo nell'header
+10) miglioramento grafico informazioni account
+11) visibilità password on off
+
+----------------FATTO----------------
+
+1) Controllare se l'inserimento dei dati è corretto nei form 
+2) Controllo sicurezza password 

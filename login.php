@@ -1,36 +1,36 @@
-<?php include('eCommerceAssets/php/server.php'); 
-	echo "Hash: ".$hashedPassword;
-	echo " --- Non criptata: ".$password;
-?>
+<?php include('eCommerceAssets/php/server.php');?>
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Accedi</title>
-			<meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="eCommerceAssets/styles/style.css">
+  	<title>Accedi</title>
+	<meta charset="utf-8">
+  	<link rel="stylesheet" type="text/css" href="eCommerceAssets/styles/style.css">
 	<script>var __adobewebfontsappname__="dreamweaver"</script><script src="http://use.edgefonts.net/montserrat:n4:default;source-sans-pro:n2:default.js" type="text/javascript"></script>
 	<link rel="icon" href="eCommerceAssets\images\favicon.png" height="48" width="48"/>
 </head>
 <body>
-<header> 
+	<header> 
     <!-- This is the header content. It contains Logo and links -->
-    <div id="logo"> <a href="index.html"><img src="eCommerceAssets/images/logoImage.png" alt="logo Amazoz" height="43" width="100"></a>
+    <div id="logo"> 
+		<a href="index.html"><img src="eCommerceAssets/images/logoImage.png" alt="logo Amazoz" height="43" width="100"</a>
       <!-- Company Logo text --> 
       </div>
     <div id="headerLinks">
 		<a href="index.html" title="Home">Home</a>
-		<a href="register.php" title="Registrati">Registrati</a>>
+		<a href="register.php" title="Registrati">Registrati</a>
+		<a title=""></a>
 	 </div>
+	</header>
   <form method="post" action="login.php">
 	  
   	<?php include('eCommerceAssets/php/errors.php'); ?>
   	<div class="input-group">
   		<label>Username</label>
-  		<input type="text" name="username" >
+  		<input type="text" name="username" pattern="[A-Za-z0-9]{2,}" maxlength="20">
   	</div>
   	<div class="input-group">
   		<label>Password</label>
-  		<input type="password" name="password">
+  		<input type="password" name="password" minlength="8" maxlength="20">
   	</div>
   	<div class="input-group">
   		<button type="submit" class="btn" name="login_user">Login</button>

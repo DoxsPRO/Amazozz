@@ -120,6 +120,12 @@ if (isset($_POST['login_user'])) {
 		$results = mysqli_fetch_array($res_get);
 		$_SESSION['cod_fisc'] = $results['codfT'];
 
+		//selezione provincia
+		$sql_get = "SELECT Provincia AS provinciaT FROM clienti WHERE CredenzialeID = '$temp'";
+		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
+		$results = mysqli_fetch_array($res_get);
+		$_SESSION['provincia'] = $results['provinciaT'];
+		 
 		//selezione citta
 		$sql_get = "SELECT Citta AS cittaT FROM clienti WHERE CredenzialeID = '$temp'";
 		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
@@ -168,27 +174,30 @@ if (isset($_POST['subit_data'])) {
 	$cognome = mysqli_real_escape_string($db, $_POST['cognome']);
 	$data = mysqli_real_escape_string($db, $_POST['data']);
 	$cod_fisc = mysqli_real_escape_string($db, $_POST['cod_fisc']);
+	$provincia = mysqli_real_escape_string($db, $_POST['provincia']);
 	$citta = mysqli_real_escape_string($db, $_POST['citta']);
 	$indirizzo = mysqli_real_escape_string($db, $_POST['indirizzo']);
 	$cap = mysqli_real_escape_string($db, $_POST['cap']);
 	$telefono = mysqli_real_escape_string($db, $_POST['telefono']);
 	
 	 if (empty($name)) {
-  	array_push($errors, "Nome è richiesto");}
+  	array_push($errors, "Nome è un campo obbligatorio!");}
 	 if (empty($cognome)) {
-  	array_push($errors, "Cognome è richiesto");}
+  	array_push($errors, "Cognome è un campo obbligatorio!");}
 		 if (empty($data)) {
-  	array_push($errors, "Data di nascita richiesta");}
+  	array_push($errors, "Data di nascita è un campo obbligatorio!");}
 	 if (empty($cod_fisc)) {
-  	array_push($errors, "Codice fiscale è richiesto");}
+  	array_push($errors, "Codice fiscale è un campo obbligatorio!");}
+			 if (empty($provincia)) {
+  	array_push($errors, "Provincia è un campo obbligatorio!");}
 		 if (empty($citta)) {
-  	array_push($errors, "Città è richiesto");}
+  	array_push($errors, "Città è un campo obbligatorio!");}
 	 if (empty($indirizzo)) {
-  	array_push($errors, "Indirizzo è richiesto");}
+  	array_push($errors, "Indirizzo è un campo obbligatorio!");}
 		 if (empty($cap)) {
-  	array_push($errors, "Cap è richiesto");}
+  	array_push($errors, "Cap è un campo obbligatorio!");}
 	 if (empty($telefono)) {
-  	array_push($errors, "Telefono è richiesto");}
+  	array_push($errors, "Telefono è un campo obbligatorio!");}
 	
 	$newDate = date("Y-m-d", strtotime($data));
 	
@@ -199,8 +208,8 @@ if (isset($_POST['subit_data'])) {
 	$results = mysqli_fetch_array($res_id);
 	$temp = $results['max'];
 
-	$query = "INSERT INTO clienti (Nome, Cognome, Data, CodiceFiscale, Citta, Indirizzo, CAP, Telefono, CredenzialeID) 
-  			  VALUES('$name', '$cognome', '$newDate', '$cod_fisc', '$citta', '$indirizzo', '$cap', '$telefono', '$temp')";
+	$query = "INSERT INTO clienti (Nome, Cognome, Data, CodiceFiscale, Provincia, Citta, Indirizzo, CAP, Telefono, CredenzialeID) 
+  			  VALUES('$name', '$cognome', '$newDate', '$cod_fisc', '$provincia', '$citta', '$indirizzo', '$cap', '$telefono', '$temp')";
 		  
   	mysqli_query($db, $query)or die(mysqli_error($db));
 		  
@@ -209,6 +218,7 @@ if (isset($_POST['subit_data'])) {
 	$_SESSION['cognome'] = $cognome;
 	$_SESSION['data'] = $newDate;
 	$_SESSION['cod_fisc'] = $cod_fisc;
+	$_SESSION['provincia'] = $provincia;
 	$_SESSION['citta'] = $citta;
 	$_SESSION['indirizzo'] = $indirizzo;
 	$_SESSION['cap'] = $cap;

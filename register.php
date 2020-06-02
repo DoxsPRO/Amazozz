@@ -3,9 +3,10 @@
 <html>
 <head>
   <title>Registrati</title>
-			<meta charset="utf-8">
+	<meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="eCommerceAssets/styles/style.css">
-	<script>var __adobewebfontsappname__="dreamweaver"</script><script src="http://use.edgefonts.net/montserrat:n4:default;source-sans-pro:n2:default.js" type="text/javascript"></script>
+	<script>var __adobewebfontsappname__="dreamweaver"</script>
+	<script src="http://use.edgefonts.net/montserrat:n4:default;source-sans-pro:n2:default.js" type="text/javascript"></script>
 	<link rel="icon" href="eCommerceAssets\images\favicon.png" height="48" width="48"/>
 </head>
 <body>
@@ -17,13 +18,14 @@
     <div id="headerLinks">
 		<a href="index.html" title="Home">Home</a>
 		<a href="login.php" title="Login">Accedi</a>
+		<a href="" title=""></a>
 	  </div>
-	
+	</header> 
   <form method="post" action="register.php">
   	<?php include('eCommerceAssets/php/errors.php'); ?>
   	<div class="input-group">
   	  <label>Username</label>
-  	  <input type="text" name="username">
+  	  <input type="text" name="username" pattern="[A-Za-z0-9]{2,}" maxlength="20" title="Deve contenere almeno una lettera, minimo 2 massimo 20 caratteri">
   	</div>
   	<div class="input-group">
   	  <label>Email</label>
@@ -31,15 +33,15 @@
   	</div>
   	<div class="input-group">
   	  <label>Password</label>
-  	  <input type="password" name="password_1" minlength="8" maxlength="20">
+  	  <input type="password" name="password_1" minlength="8" maxlength="20" title="Deve essere minimo 8 e massimo 20 caratteri">
   	</div>
   	<div class="input-group">
   	  <label>Conferma password</label>
-  	  <input type="password" name="password_2" minlength="8" maxlength="20">
+  	  <input type="password" name="password_2" minlength="8" maxlength="20" title="Deve corrispondere con la password inserita prima!">
   	</div>
 	  <div class="input-group">
-  	  <label>Token 2O3W7HKjgTIH</label>
-  	  <input type="password" name="token" value="2O3W7HKjgTIH">
+  	  <label>Token</label>
+  	  <input type="password" name="token" value="2O3W7HKjgTIH" title="Devi possedere il token per poterti registrare!">
   	</div>
   	<div class="input-group">
   	  <button type="submit" class="btn" name="reg_user">Registrati</button>

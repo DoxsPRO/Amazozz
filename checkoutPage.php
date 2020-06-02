@@ -2,12 +2,9 @@
   include('eCommerceAssets/php/server.php');
 
   if (!isset($_SESSION['username'])) {
-  	$_SESSION['msg'] = "You must log in first";
+  	$_SESSION['msg'] = "Devi effettuare prima l'accesso!";
   	header('location: login.php');
   }
-	//Array ( [info] => a:3:{i:0;s:4:"Doxs";i:1;N;i:2;N;} 
-	//[shopping_cart] => [{"item_id":"11214","item_name":"EIVOTOR Microfono","item_price":"24.79","item_quantity":"1"},{"item_id":"11114","item_name":"msi GeForce RTX 2070 Ventus GP","item_price":"489","item_quantity":"1"}]
-	//[PHPSESSID] => h88hch276ctqgts0ntbfi9nurt )
 
 ?>
 
@@ -15,7 +12,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Checkout</title>
+		<title>Pagamento</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="eCommerceAssets/styles/checkoutStyle.css">
 		<!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
@@ -33,26 +30,30 @@
 
 				<div class="row">
 				  <div class="col-50">
-					<h3>Indirizzo di spedizione</h3>
+					<h3>Dati spedizione</h3>
 					<label for="fname"><i class="fa fa-user"></i> Nome</label>
-					<input type="text" id="fname" name="fullname" value="<?php echo $_SESSION['name'].' '.$_SESSION['cognome'];?>">
+					<input type="text" id="fname" name="fullname" value="<?php echo $_SESSION['name'].' '.$_SESSION['cognome'];?>" pattern="[A-Za-z\s]{2,}" maxlength="100" title="Inserisci il tuo nome completo">
+					  
 					<label for="email"><i class="fa fa-envelope"></i> Email</label>
 					<input type="text" id="email" name="email" value="<?php echo $_SESSION['email'];?>" >
+					  
 					<label for="fname"><i class="fa fa-phone"></i> Telefono</label>
-					<input type="text" id="tel" name="phone" value="<?php echo $_SESSION['telefono'];?>">
+					<input type="text" id="tel" name="phone" value="<?php echo $_SESSION['telefono'];?>" pattern="[0-9]{11}" maxlength="11" title="Non inserie caratteri speciali!">
+					  
 					<label for="adr"><i class="fa fa-address-card-o"></i> Indirizzo</label>
-					<input type="text" id="adr" name="address" value="<?php print $_SESSION['indirizzo'];?>">
+					<input type="text" id="adr" name="address" value="<?php print $_SESSION['indirizzo'];?>" pattern="[A-Za-z0-9\s]{5,}" maxlength="50" title="Non inserie caratteri speciali!">
+					  
 					<label for="city"><i class="fa fa-institution"></i> Città</label>
-					<input type="text" id="city" name="city"value="<?php echo $_SESSION['citta'];?>">
+					<input type="text" id="city" name="city" value="<?php echo $_SESSION['citta'];?>" pattern="[A-Za-z\s]{3,}" maxlength="50" title="Non inserie caratteri speciali!">
 
 					<div class="row">
 					  <div class="col-50">
 						<label for="state">Provincia</label>
-						<input type="text" id="state" name="state">
+						<input type="text" id="state" name="state" value="<?php echo $_SESSION['provincia'];?>" pattern="[A-Za-z\s]{3,}" maxlength="50" title="Inserisci il nome completo della provincia">
 					  </div>
 					  <div class="col-50">
 						<label for="zip">CAP</label>
-						<input type="text" id="zip" name="zip" value="<?php echo $_SESSION['cap']?>">
+						<input type="text" id="zip" name="zip" value="<?php echo $_SESSION['cap']?>" pattern="[0-9]{5}" maxlength="5">
 					  </div>
 					</div>
 				  </div>
@@ -67,13 +68,16 @@
 					  <i class="fa fa-cc-discover" style="color:orange;"></i>
 					</div>
 					<label for="cname">Nome titolare</label>
-					<input type="text" id="cname" name="cardname">
+					<input type="text" id="cname" name="cardname" pattern="[A-Za-z\s]{2,}" maxlength="100" title="Inserisci il tuo nome completo">
+					  
 					<label for="ccnum">Numero carta</label>
-					<input type="text" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" value="1111-2222-3333-4444" maxlength="19">
+					<input type="text" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" maxlength="19">
+					  
 					<label for="expmonth">Mese di scadenza</label>
             		<input type="month" id="expmonth" name="expmonth">
+					  
 					<label for="cvv">CVV</label>
-                	<input type="text" id="cvv" name="cvv" placeholder="352" maxlength="3">
+                	<input type="text" id="cvv" name="cvv" placeholder="352" pattern="[0-9]{3}" maxlength="3" title="Inserisci il tuo codice dietro alla carta di 3 cifre" >
 				  </div>
 
 				</div>
