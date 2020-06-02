@@ -11,6 +11,7 @@
   	session_destroy();
 	unset($_COOKIE['info']);
   	unset($_SESSION['username']);
+	setcookie("shopping_cart", "", time() - 1800);
   	header("location: index.html");
   }
 ?>

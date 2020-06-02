@@ -83,13 +83,12 @@ if (isset($_POST['login_user'])) {
   	//$password = md5($password);
 	 if (password_verify($password, $hashedPassword)) {
    
-  	//$query = "SELECT * FROM credenziali WHERE Username='$username' AND Password='$password'";
-  	//$results = mysqli_query($db, $query);
-	  
+  	$query = "SELECT * FROM credenziali WHERE Username='$username' AND Password='$hashedPassword'";
+  	$results = mysqli_query($db, $query);
 	  //salvataggio informazioni utente
   	//if (mysqli_num_rows($results) == 1) {
 		//selezione CredenzialeID
-		$sql_id = "SELECT CredenzialeID AS max FROM credenziali WHERE Username='$username' AND Password='$password'";
+		$sql_id = "SELECT CredenzialeID AS max FROM credenziali WHERE Username='$username' AND Password='$hashedPassword'";
 		$res_id = mysqli_query($db, $sql_id) or die(mysqli_error($db)); 
 		$results = mysqli_fetch_array($res_id);
 		$_SESSION['id'] = $results['max'];
@@ -158,8 +157,6 @@ if (isset($_POST['login_user'])) {
 		
   	  	$_SESSION['username'] = $username;
   	  	$_SESSION['success'] = "Hai eseguito l'accesso correttamente!";
-		
-		setcookie('info', $username, time() + (86400 * 30));
 		
   	  	header('location: indexLog.php');
   		}
@@ -322,12 +319,18 @@ if (isset($_POST['pagamento']))
 			//diminuisco la quantità del prodotto comprato
 			$query = "UPDATE prodotti SET Quantita = '$quantita_prod' WHERE ProdottoID = '$item_id';";
 			mysqli_query($db, $query) or die(mysqli_error($db));
+			
+			//seleziono l'ultimo ordine
+			$sql_id = "SELECT MAX(OridineID) AS ordineMax FROM ordini";
+			$res_id = mysqli_query($db, $sql_id);	  
+			$results = mysqli_fetch_array($res_id);
+			$ordineMax = $results['ordineMax'];
+			
+			//salvo le informazioni della carta SELECT EXTRACT(YEAR_MONTH FROM "2017-06-15");
+			$query = "INSERT INTO carte (NumCarta, Proprietario, Scadenza, CVV2, ClienteID, OrdineID) VALUES ('$cardnumber', '$cardname', '$expmonth', '$cvv', '$customer', '$ordineMax')";		
+ 			mysqli_query($db, $query) or die(mysqli_error($db));
 		}
 		
-		//salvo le informazioni della carta SELECT EXTRACT(YEAR_MONTH FROM "2017-06-15");
-		$query = "INSERT INTO carte (NumCarta, Proprietario, Scadenza, CVV2, ClienteID) VALUES ('$cardnumber', '$cardname', '$expmonth', '$cvv', '$customer')";
-		
- 		mysqli_query($db, $query) or die(mysqli_error($db));
 		
 		setcookie("shopping_cart", "", time() - 1800);
 		

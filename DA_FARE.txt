@@ -1,5 +1,7 @@
 Lista delle cose da fare
 
+1) Normalizzazione tabelle database
+2) Ricreazione schema e/r
 3) Aggiungere storico ordini per cliente
 4) Implementare privacy e sicurezza
 5) Formattazione nome prodotti (stefano)
@@ -9,8 +11,10 @@ Lista delle cose da fare
 9) correzione logo nell'header
 10) miglioramento grafico informazioni account
 11) visibilità password on off
+12) Aggiungere peso ai prodotti
 
 ----------------FATTO----------------
 
 1) Controllare se l'inserimento dei dati è corretto nei form 
 2) Controllo sicurezza password 
+3) Cancellazione cookie uscita account e pagamento
