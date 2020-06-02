@@ -13,6 +13,14 @@ Lista delle cose da fare
 11) visibilità password on off
 12) Aggiungere peso ai prodotti
 
+----------------URGENTE----------------
+
+1)l'acquisto non funziona più dopo l'inserimento di OrdineID, quindi salva l'ordine, ma non salva la carta
+Warning: mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in C:\xampp\htdocs\sito e-commerce\eCommerceAssets\php\server.php on line 326
+
+Notice: Trying to access array offset on value of type null in C:\xampp\htdocs\sito e-commerce\eCommerceAssets\php\server.php on line 327
+Cannot add or update a child row: a foreign key constraint fails (`sito`.`carte`, CONSTRAINT `carte_ibfk_2` FOREIGN KEY (`OrdineID`) REFERENCES `ordini` (`OrdineID`))
+
 ----------------FATTO----------------
 
 1) Controllare se l'inserimento dei dati è corretto nei form 
