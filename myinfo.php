@@ -11,7 +11,7 @@
   	session_destroy();
 	unset($_COOKIE['info']);
   	unset($_SESSION['username']);
-  	header("location: login.php");
+  	header("location: index.html");
   }
 ?>
 
@@ -35,8 +35,8 @@
       </div>
     <div id="headerLinks">
 		<a href="indexLog.php" title="Home">Home</a>
-		<a href="" title="Cart">Carrello</a>
-		<a href="" title="sessID"><?php echo session_id();?></a>
+		<a href="checkoutPage.php" title="Cart">Carrello</a>
+		<a href="account.php?logout='1'" style="color: red;" title="sessID">Esci</a>
 		</div>
 <div class="content">
   	<!-- notification message -->

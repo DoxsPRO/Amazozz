@@ -1,8 +1,12 @@
-<?php include('eCommerceAssets/php/server.php') ?>
+<?php include('eCommerceAssets/php/server.php'); 
+	echo "Hash: ".$hashedPassword;
+	echo " --- Non criptata: ".$password;
+?>
 <!DOCTYPE html>
 <html>
 <head>
   <title>Accedi</title>
+			<meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="eCommerceAssets/styles/style.css">
 	<script>var __adobewebfontsappname__="dreamweaver"</script><script src="http://use.edgefonts.net/montserrat:n4:default;source-sans-pro:n2:default.js" type="text/javascript"></script>
 	<link rel="icon" href="eCommerceAssets\images\favicon.png" height="48" width="48"/>
@@ -15,9 +19,7 @@
       </div>
     <div id="headerLinks">
 		<a href="index.html" title="Home">Home</a>
-		<a href="register.php" title="Registrati">Registrati</a>
-		<a href="" title="Cart">Carrello</a>
-		<a href="" title="sessID"><?php echo session_id();?></a>
+		<a href="register.php" title="Registrati">Registrati</a>>
 	 </div>
   <form method="post" action="login.php">
 	  

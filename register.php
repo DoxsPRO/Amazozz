@@ -1,8 +1,9 @@
-<?php include('eCommerceAssets/php/server.php') ?>
+<?php include('eCommerceAssets/php/server.php');?>
 <!DOCTYPE html>
 <html>
 <head>
   <title>Registrati</title>
+			<meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="eCommerceAssets/styles/style.css">
 	<script>var __adobewebfontsappname__="dreamweaver"</script><script src="http://use.edgefonts.net/montserrat:n4:default;source-sans-pro:n2:default.js" type="text/javascript"></script>
 	<link rel="icon" href="eCommerceAssets\images\favicon.png" height="48" width="48"/>
@@ -16,8 +17,6 @@
     <div id="headerLinks">
 		<a href="index.html" title="Home">Home</a>
 		<a href="login.php" title="Login">Accedi</a>
-		<a href="" title="Cart">Carrello</a>
-		<a href="" title="sessID"><?php echo session_id();?></a>
 	  </div>
 	
   <form method="post" action="register.php">
@@ -32,21 +31,21 @@
   	</div>
   	<div class="input-group">
   	  <label>Password</label>
-  	  <input type="password" name="password_1">
+  	  <input type="password" name="password_1" minlength="8" maxlength="20">
   	</div>
   	<div class="input-group">
-  	  <label>Confirm password</label>
-  	  <input type="password" name="password_2">
+  	  <label>Conferma password</label>
+  	  <input type="password" name="password_2" minlength="8" maxlength="20">
   	</div>
 	  <div class="input-group">
   	  <label>Token 2O3W7HKjgTIH</label>
   	  <input type="password" name="token" value="2O3W7HKjgTIH">
   	</div>
   	<div class="input-group">
-  	  <button type="submit" class="btn" name="reg_user">Register</button>
+  	  <button type="submit" class="btn" name="reg_user">Registrati</button>
   	</div>
   	<p>
-  		Already a member? <a href="login.php">Sign in</a>
+  		Hai già un account? <a href="login.php">Accedi</a>
   	</p>
   </form>
 	  	<div><a href="https://www.iubenda.com/privacy-policy/13672304" class="iubenda-black iubenda-embed" title="Privacy Policy ">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>

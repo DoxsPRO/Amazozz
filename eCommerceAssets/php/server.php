@@ -11,6 +11,7 @@ $db = mysqli_connect('localhost', 'root', '', 'sito');
 if ($db->connect_errno) {
 	array_push($errors,"Impossibile connettersi al server: " . $conn->connect_error);
     }
+
 // REGISTER USER
 if (isset($_POST['reg_user'])) {
   // receive all input values from the form
@@ -44,15 +45,19 @@ if (isset($_POST['reg_user'])) {
 	}
   // Finally, register user if there are no errors in the form
   if (count($errors) == 0) {
-  	$password = md5($password_1);//encrypt the password before saving in the database
-
-  	$query = "INSERT INTO credenziali (Username, Password, Email) 
-  			  VALUES('$username', '$password', '$email')";
-  	mysqli_query($db, $query);
-  	$_SESSION['username'] = $username;
-  	$_SESSION['success'] = "Hai eseguito l'accesso correttamente!";
-	 $_SESSION['email'] = $email;
-  	header('location: account.php');
+		//è buona norma non salvare le password in chiaro, ma crittografate
+  		//$password = md5($password_1);//encrypt the password before saving in the database
+	  	
+	  	//PASSWORD_DEFAULT can store more than 60 characters (255 is the recommended width).
+		$hashedPassword = password_hash($password_1, PASSWORD_DEFAULT); // hash password
+	  
+  		$query = "INSERT INTO credenziali (Username, Password, Email) 
+  			  VALUES('$username', '$hashedPassword', '$email')";
+  		mysqli_query($db, $query)or die(mysqli_error($db));
+  		$_SESSION['username'] = $username;
+  		$_SESSION['success'] = "Hai eseguito l'accesso correttamente!";
+	 	$_SESSION['email'] = $email;
+  		header('location: account.php');
   }
 }
 	// ... 
@@ -69,10 +74,20 @@ if (isset($_POST['login_user'])) {
   }
 
   if (count($errors) == 0) {
-  	$password = md5($password);
-  	$query = "SELECT * FROM credenziali WHERE Username='$username' AND Password='$password'";
-  	$results = mysqli_query($db, $query);
-  	if (mysqli_num_rows($results) == 1) {
+	  
+	  	$sql_get = "SELECT Password AS crypt FROM credenziali WHERE Username='$username'";
+		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
+		$resultsCry = mysqli_fetch_array($res_get);
+		$hashedPassword = $resultsCry['crypt'];
+	  	
+  	//$password = md5($password);
+	 if (password_verify($password, $hashedPassword)) {
+   
+  	//$query = "SELECT * FROM credenziali WHERE Username='$username' AND Password='$password'";
+  	//$results = mysqli_query($db, $query);
+	  
+	  //salvataggio informazioni utente
+  	//if (mysqli_num_rows($results) == 1) {
 		//selezione CredenzialeID
 		$sql_id = "SELECT CredenzialeID AS max FROM credenziali WHERE Username='$username' AND Password='$password'";
 		$res_id = mysqli_query($db, $sql_id) or die(mysqli_error($db)); 
@@ -303,6 +318,8 @@ if (isset($_POST['pagamento']))
 		$query = "INSERT INTO carte (NumCarta, Proprietario, Scadenza, CVV2, ClienteID) VALUES ('$cardnumber', '$cardname', '$expmonth', '$cvv', '$customer')";
 		
  		mysqli_query($db, $query) or die(mysqli_error($db));
+		
+		setcookie("shopping_cart", "", time() - 1800);
 		
 		header('location: indexLog.php');
 	}

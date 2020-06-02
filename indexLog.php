@@ -97,13 +97,13 @@ if(isset($_GET["remove"]))
 	</div>
 	';
 }
-if(isset($_GET["clearall"]))
-	
+
+if(isset($_GET["clearall"]))	
 {
 	$message = '
 	<div class="alert alert-success alert-dismissible">
 		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-		Il tuo carello è vuoto
+		Il tuo carrello è vuoto
 	</div>
 	';
 }
@@ -111,7 +111,7 @@ if(isset($_GET["clearall"]))
  if (isset($_GET['logout'])) {
   	session_destroy();
   	unset($_SESSION['username']);
-  	header("location: login.php");
+  	header("location: index.html");
   }
 
 ?>
@@ -141,7 +141,7 @@ if(isset($_GET["clearall"]))
 			 </div>
 			<div id="headerLinks">
 				<a href="myinfo.php" title="Account">Profilo</a>
-				<a href="account.php?logout='1'" style="color: red;" title="sessID"><?php echo session_id();?></a>
+				<a href="account.php?logout='1'" style="color: red;" title="sessID">Esci</a>
 			  </div>
 		 </header>
 		<br />

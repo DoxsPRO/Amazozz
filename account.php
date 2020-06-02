@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php 
-
+ include('eCommerceAssets/php/server.php');
   if (!isset($_SESSION['username'])) {
   	$_SESSION['msg'] = "You must log in first";
   	header('location: login.php');
@@ -11,7 +11,7 @@
   	header("location: login.php");
   }
 ?>
-<?php include('eCommerceAssets/php/server.php') ?>
+
 
 <html>
 <head>
@@ -27,11 +27,6 @@
     <div id="logo"> <img src="eCommerceAssets/images/logoImage.png" alt="logo Amazoz" height="43" width="100">
       <!-- Company Logo text --> 
       </div>
-    <div id="headerLinks">
-		<!--<a href="index.html" title="Home">Home</a>
-		<a href="" title="Cart">Carrello</a>-->
-		<a href="" title="sessID"><?php echo session_id();?></a>
-	</div>
 <div class="content">
   	<!-- notification message -->
   	<?php if (isset($_SESSION['success'])) : ?>
@@ -90,7 +85,7 @@
 		 
 	<div class="input-group">
   		<label>Telefono</label>
-  		<input type="number" name="telefono" >
+  		<input type="number" name="telefono" pattern="[A-Z]{20}">
   	</div>
 		 
   	<div class="input-group">
