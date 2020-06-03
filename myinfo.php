@@ -21,6 +21,7 @@
 <meta charset="utf-8">
 	<title>Il mio account</title>
 	<link rel="stylesheet" type="text/css" href="eCommerceAssets/styles/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script>var __adobewebfontsappname__="dreamweaver"</script><script src="http://use.edgefonts.net/montserrat:n4:default;source-sans-pro:n2:default.js" type="text/javascript"></script>
 	<link rel="icon" href="eCommerceAssets\images\favicon.png" height="48" width="48"/>
 </head>
@@ -60,32 +61,23 @@
     	<p> <a href="account.php?logout='1'" style="color: red;">Esci</a> </p>
     <?php endif ?>
 	<form>
-				<div class="input-group">
-  		<?php echo $_SESSION['id']; ?>
+		<div class="input-group">
+  			<i class="fa fa-user-circle" aria-hidden="true"></i><?php echo " ".$_SESSION['name']." ".$_SESSION['cognome'];?>
 		</div>
-				<div class="input-group">
-  		<?php echo $_SESSION['name']; ?>
-		</div>
-				<div class="input-group">
-  		<?php echo $_SESSION['cognome']; ?>
-		</div>
-				<div class="input-group">
-  		<?php echo $_SESSION['data']; ?>
+		<div class="input-group">
+  			<i class="fa fa-birthday-cake" aria-hidden="true"></i><?php echo " ".$_SESSION['data']; ?>
 		</div>	
-				<div class="input-group">
-  		<?php echo $_SESSION['cod_fisc']; ?>
+		<div class="input-group">
+  			<i class="fa fa-id-card-o" aria-hidden="true"></i><?php echo " ".$_SESSION['cod_fisc']; ?>
 		</div>
-				<div class="input-group">
-  		<?php echo $_SESSION['citta']; ?>
+		<div class="input-group">
+  			<i class="fa fa-home" aria-hidden="true"></i></i><?php echo " ".$_SESSION['citta']." (".$_SESSION['cap'].")".", ".$_SESSION['provincia']; ?>
 		</div>
-				<div class="input-group">
-  		<?php echo $_SESSION['indirizzo']; ?>
-				</div>
-				<div class="input-group">
-  		<?php echo $_SESSION['cap']; ?>
+		<div class="input-group">
+  			<i class="fa fa-map-marker" aria-hidden="true"></i><?php echo " ".$_SESSION['indirizzo']; ?>
 		</div>
-				<div class="input-group">
-  		<?php echo $_SESSION['telefono']; ?>
+		<div class="input-group">
+  			<i class="fa fa-phone" aria-hidden="true"></i><?php echo " ".$_SESSION['telefono']; ?>
 		</div>
 		  	<div class="input-group">
   		<button type="submit" class="btn" name="edit">Modifica dati</button>

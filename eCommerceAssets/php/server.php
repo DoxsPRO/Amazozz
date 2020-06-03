@@ -110,8 +110,7 @@ if (isset($_POST['login_user'])) {
 		$sql_get = "SELECT Data AS dataT FROM clienti WHERE CredenzialeID = '$temp'";
 		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
 		$results = mysqli_fetch_array($res_get);
-		$newDate = date("Y-m-d", strtotime($results['dataT']));
-		$_SESSION['data'] = $newData;
+		$_SESSION['data'] = $results['dataT'];
 		
 		//selezione codice fiscale
 		$sql_get = "SELECT CodiceFiscale AS codfT FROM clienti WHERE CredenzialeID = '$temp'";
@@ -213,7 +212,7 @@ if (isset($_POST['subit_data'])) {
   	$_SESSION['success'] = "Hai inserito tutti i dati correttamente!";
 	$_SESSION['name'] = $name;
 	$_SESSION['cognome'] = $cognome;
-	$_SESSION['data'] = $newDate;
+	$_SESSION['data'] = $data;	  
 	$_SESSION['cod_fisc'] = $cod_fisc;
 	$_SESSION['provincia'] = $provincia;
 	$_SESSION['citta'] = $citta;
