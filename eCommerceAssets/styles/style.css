@@ -26,8 +26,6 @@ header {
 	padding-bottom: 10px;
 	width: 139px;
 	text-align: center;
-	color: rgba(255,255,255,1.00);
-	background-color: rgba(190,190,190,1.00);
 }
 /* div for Links in header */
 #headerLinks {
@@ -36,7 +34,6 @@ header {
 	text-align: right;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	background-color: rgba(255,255,255,1.00);
 }
 /* Links in header */
 #headerLinks a {

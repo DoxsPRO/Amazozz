@@ -5,10 +5,7 @@ Lista delle cose da fare
 3) Aggiungere storico ordini per cliente
 4) Implementare privacy e sicurezza
 5) Formattazione nome prodotti (stefano)
-9) correzione logo nell'header
-10) miglioramento grafico informazioni account
 11) visibilità password on off
-12) Aggiungere peso ai prodotti
 
 ----------------URGENTE----------------
 
@@ -22,3 +19,5 @@ Lista delle cose da fare
 5) Gestione duplicatazione carta (la carta può essere duplicata perchè non è più PK)
 6) Scadenza carta di credito (da finire di mettere apposto perchè adesso ha il giorno)
 7) Controllo quantità magazzino
+8) miglioramento grafico informazioni account
+9) correzione logo nell'header

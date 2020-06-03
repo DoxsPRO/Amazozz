@@ -33,7 +33,7 @@
   		<input type="password" name="password" minlength="8" maxlength="20">
   	</div>
   	<div class="input-group">
-  		<button type="submit" class="btn" name="login_user">Login</button>
+  		<button type="submit" class="btn" name="login_user">Accedi</button>
   	</div>
   	<p>
   		Non hai un account? <a href="register.php">Registrati</a>

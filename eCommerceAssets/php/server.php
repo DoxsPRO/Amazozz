@@ -303,8 +303,8 @@ if (isset($_POST['pagamento']))
 			$tot = number_format($values["item_quantity"] * $values["item_price"], 2);
 			
 			//inserimento nella tabella ordini
-			$query = "INSERT INTO ordini (ProdottoID, ClienteID, NomeCliente, EmailSpedizione,	TelefonoSpedizione, IndirizzoSpedizione, CittaSpedizione, ProvinciaSpedizione, CapSpedizione ,NomeProdotto, NumProdotti, DataOrdine, TotaleOrdine, TotalePeso) 
-			VALUES ('$item_id', '$customer', '$fullname', '$email', '$phone', '$address', '$city', '$state', '$zip', '$item_name',	'$item_quantity', '$OGGI' ,'$tot', 0)";
+			$query = "INSERT INTO ordini (ProdottoID, ClienteID, NomeCliente, EmailSpedizione,	TelefonoSpedizione, IndirizzoSpedizione, CittaSpedizione, ProvinciaSpedizione, CapSpedizione ,NomeProdotto, NumProdotti, DataOrdine, TotaleOrdine) 
+			VALUES ('$item_id', '$customer', '$fullname', '$email', '$phone', '$address', '$city', '$state', '$zip', '$item_name',	'$item_quantity', '$OGGI' ,'$tot')";
   			mysqli_query($db, $query) or die(mysqli_error($db));
 			
 			//prendo la quantità del prodotto
