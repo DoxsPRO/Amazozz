@@ -321,13 +321,15 @@ if (isset($_POST['pagamento']))
 			mysqli_query($db, $query) or die(mysqli_error($db));
 			
 			//seleziono l'ultimo ordine
-			$sql_id = "SELECT MAX(OridineID) AS ordineMax FROM ordini";
+			$sql_id = "SELECT MAX(OrdineID) AS ordineMax FROM ordini";
 			$res_id = mysqli_query($db, $sql_id);	  
 			$results = mysqli_fetch_array($res_id);
 			$ordineMax = $results['ordineMax'];
 			
+			$newDate = date("Y-m-d", strtotime($expmonth));
+			
 			//salvo le informazioni della carta SELECT EXTRACT(YEAR_MONTH FROM "2017-06-15");
-			$query = "INSERT INTO carte (NumCarta, Proprietario, Scadenza, CVV2, ClienteID, OrdineID) VALUES ('$cardnumber', '$cardname', '$expmonth', '$cvv', '$customer', '$ordineMax')";		
+			$query = "INSERT INTO carte (NumCarta, Proprietario, Scadenza, CVV2, ClienteID, OrdineID) VALUES ('$cardnumber', '$cardname', '$newDate', '$cvv', '$customer', '$ordineMax')";		
  			mysqli_query($db, $query) or die(mysqli_error($db));
 		}
 		

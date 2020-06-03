@@ -38,7 +38,7 @@
 					<input type="text" id="email" name="email" value="<?php echo $_SESSION['email'];?>" >
 					  
 					<label for="fname"><i class="fa fa-phone"></i> Telefono</label>
-					<input type="text" id="tel" name="phone" value="<?php echo $_SESSION['telefono'];?>" pattern="[0-9]{11}" maxlength="11" title="Non inserie caratteri speciali!">
+					<input type="text" id="tel" name="phone" value="<?php echo $_SESSION['telefono'];?>" pattern="[0-9]{9}" maxlength="9" title="Non inserie caratteri speciali!">
 					  
 					<label for="adr"><i class="fa fa-address-card-o"></i> Indirizzo</label>
 					<input type="text" id="adr" name="address" value="<?php print $_SESSION['indirizzo'];?>" pattern="[A-Za-z0-9\s]{5,}" maxlength="50" title="Non inserie caratteri speciali!">
@@ -74,7 +74,7 @@
 					<input type="text" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" maxlength="19">
 					  
 					<label for="expmonth">Mese di scadenza</label>
-            		<input type="month" id="expmonth" name="expmonth">
+            		<input type="date" id="expmonth" name="expmonth" min="01-01-2020" title="Imposta il primo giorno del mese!">
 					  
 					<label for="cvv">CVV</label>
                 	<input type="text" id="cvv" name="cvv" placeholder="352" pattern="[0-9]{3}" maxlength="3" title="Inserisci il tuo codice dietro alla carta di 3 cifre" >

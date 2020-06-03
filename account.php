@@ -86,7 +86,7 @@
 		 
 	<div class="input-group">
   		<label>Telefono</label>
-  		<input type="text" name="telefono" pattern="[0-9]{11}" maxlength="11" title="Non inserie caratteri speciali!">
+  		<input type="text" name="telefono" pattern="[0-9]{9}" maxlength="9" title="Non inserie caratteri speciali!">
   	</div>
 		 
   	<div class="input-group">

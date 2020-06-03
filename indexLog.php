@@ -3,7 +3,7 @@
 //index.php
 session_start();
 
-  if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['username'])) {
   	$_SESSION['msg'] = "Devi fare l'accesso prima!";
   	header('location: login.php');
   }
@@ -108,7 +108,8 @@ if(isset($_GET["clearall"]))
 	';
 }
 
- if (isset($_GET['logout'])) {
+ if (isset($_GET['logout'])) 
+ {
   	session_destroy();
   	unset($_SESSION['username']);
 	setcookie("shopping_cart", "", time() - 1800);
@@ -152,7 +153,7 @@ if(isset($_GET["clearall"]))
 
 			<br /><br />
 			<?php
-			$query = "SELECT * FROM prodotti";
+			$query = "SELECT * FROM prodotti WHERE Quantita > 0";
 			$statement = $connect->prepare($query);
 			$statement->execute();
 			$result = $statement->fetchAll();

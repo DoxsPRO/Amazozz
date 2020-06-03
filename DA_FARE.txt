@@ -5,9 +5,6 @@ Lista delle cose da fare
 3) Aggiungere storico ordini per cliente
 4) Implementare privacy e sicurezza
 5) Formattazione nome prodotti (stefano)
-6) Controllo quantità magazzino
-7) Gestione duplicata carta
-8) Scadenza carta di credito
 9) correzione logo nell'header
 10) miglioramento grafico informazioni account
 11) visibilità password on off
@@ -15,14 +12,13 @@ Lista delle cose da fare
 
 ----------------URGENTE----------------
 
-1)l'acquisto non funziona più dopo l'inserimento di OrdineID, quindi salva l'ordine, ma non salva la carta
-Warning: mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in C:\xampp\htdocs\sito e-commerce\eCommerceAssets\php\server.php on line 326
-
-Notice: Trying to access array offset on value of type null in C:\xampp\htdocs\sito e-commerce\eCommerceAssets\php\server.php on line 327
-Cannot add or update a child row: a foreign key constraint fails (`sito`.`carte`, CONSTRAINT `carte_ibfk_2` FOREIGN KEY (`OrdineID`) REFERENCES `ordini` (`OrdineID`))
 
 ----------------FATTO----------------
 
 1) Controllare se l'inserimento dei dati è corretto nei form 
 2) Controllo sicurezza password 
 3) Cancellazione cookie uscita account e pagamento
+4) Linkaggio carta a ordine
+5) Gestione duplicatazione carta (la carta può essere duplicata perchè non è più PK)
+6) Scadenza carta di credito (da finire di mettere apposto perchè adesso ha il giorno)
+7) Controllo quantità magazzino
