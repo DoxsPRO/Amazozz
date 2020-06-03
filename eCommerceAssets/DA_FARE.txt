@@ -2,7 +2,7 @@ Lista delle cose da fare
 
 1) Normalizzazione tabelle database
 2) Ricreazione schema e/r
-3) Aggiungere storico ordini per cliente
+3) Aggiunta selezione provincia
 4) Implementare privacy e sicurezza
 5) Formattazione nome prodotti (stefano)
 11) visibilità password on off
@@ -22,3 +22,4 @@ Lista delle cose da fare
 8) miglioramento grafico informazioni account
 9) correzione logo nell'header
 10) gestione area riservata
+11) Aggiungere storico ordini per cliente

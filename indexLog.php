@@ -9,6 +9,7 @@ if (!isset($_SESSION['username'])) {
   }
 
 $connect = new PDO("mysql:host=localhost;dbname=sito", "root", "");
+//$connect = new PDO("mysql:host=localhost;dbname=my_ecommercegalilei", "ecommercegalilei", "");
 
 $message = '';
 
@@ -143,6 +144,7 @@ if(isset($_GET["clearall"]))
 			 </div>
 			<div id="headerLinks">
 				<a href="myinfo.php" title="Account">Profilo</a>
+				<a href="storicoOrdini.php" title="Oridini">Ordini</a>
 				<a href="account.php?logout='1'" style="color: red;" title="sessID">Esci</a>
 				<a title=""></a>
 			  </div>

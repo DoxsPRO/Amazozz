@@ -85,8 +85,10 @@ if (isset($_POST['login_user'])) {
    
   	$query = "SELECT * FROM credenziali WHERE Username='$username' AND Password='$hashedPassword'";
   	$results = mysqli_query($db, $query);
-	  //salvataggio informazioni utente
-  	//if (mysqli_num_rows($results) == 1) {
+		 
+	  	//salvataggio informazioni utente
+  		//if (mysqli_num_rows($results) == 1) {
+		 
 		//selezione CredenzialeID
 		$sql_id = "SELECT CredenzialeID AS max FROM credenziali WHERE Username='$username' AND Password='$hashedPassword'";
 		$res_id = mysqli_query($db, $sql_id) or die(mysqli_error($db)); 
@@ -153,6 +155,12 @@ if (isset($_POST['login_user'])) {
 		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
 		$results = mysqli_fetch_array($res_get);
 		$_SESSION['email'] = $results['emailT'];
+		 
+		//selezione ClienteID 
+		$sql_get = "SELECT ClienteID AS customerT FROM clienti WHERE CredenzialeID = '$temp'";
+		$res_get = mysqli_query($db, $sql_get);	  
+		$results = mysqli_fetch_array($res_get);
+		$_SESSION['clienteID'] = $results['customerT']; 
 		
   	  	$_SESSION['username'] = $username;
   	  	$_SESSION['success'] = "Hai eseguito l'accesso correttamente!";
@@ -198,31 +206,36 @@ if (isset($_POST['subit_data'])) {
 	$newDate = date("Y-m-d", strtotime($data));
 	
 	  if (count($errors) == 0) {
+		  
+		$sql_id = "SELECT MAX(CredenzialeID) AS max FROM credenziali";
+		$res_id = mysqli_query($db, $sql_id);	  
+		$results = mysqli_fetch_array($res_id);
+		$temp = $results['max'];
 
-	$sql_id = "SELECT MAX(CredenzialeID) AS max FROM credenziali";
-	$res_id = mysqli_query($db, $sql_id);	  
-	$results = mysqli_fetch_array($res_id);
-	$temp = $results['max'];
+		$query = "INSERT INTO clienti (Nome, Cognome, Data, CodiceFiscale, Provincia, Citta, Indirizzo, CAP, Telefono, CredenzialeID) 
+				  VALUES('$name', '$cognome', '$newDate', '$cod_fisc', '$provincia', '$citta', '$indirizzo', '$cap', '$telefono', '$temp')";	  
+		mysqli_query($db, $query)or die(mysqli_error($db));
+		  
+		//selezione ClienteID 
+		$sql_get = "SELECT ClienteID AS customerT FROM clienti WHERE CredenzialeID = '$temp'";
+		$res_get = mysqli_query($db, $sql_get);	  
+		$results = mysqli_fetch_array($res_get);
+		$_SESSION['clienteID'] = $results['customerT']; 
 
-	$query = "INSERT INTO clienti (Nome, Cognome, Data, CodiceFiscale, Provincia, Citta, Indirizzo, CAP, Telefono, CredenzialeID) 
-  			  VALUES('$name', '$cognome', '$newDate', '$cod_fisc', '$provincia', '$citta', '$indirizzo', '$cap', '$telefono', '$temp')";
-		  
-  	mysqli_query($db, $query)or die(mysqli_error($db));
-		  
-  	$_SESSION['success'] = "Hai inserito tutti i dati correttamente!";
-	$_SESSION['name'] = $name;
-	$_SESSION['cognome'] = $cognome;
-	$_SESSION['data'] = $data;	  
-	$_SESSION['cod_fisc'] = $cod_fisc;
-	$_SESSION['provincia'] = $provincia;
-	$_SESSION['citta'] = $citta;
-	$_SESSION['indirizzo'] = $indirizzo;
-	$_SESSION['cap'] = $cap;
-	$_SESSION['telefono'] = $telefono;
-	$_SESSION['id'] = $results['max'];
-		  
-  	header('location: myinfo.php');
-  }
+		$_SESSION['success'] = "Hai inserito tutti i dati correttamente!";
+		$_SESSION['name'] = $name;
+		$_SESSION['cognome'] = $cognome;
+		$_SESSION['data'] = $data;	  
+		$_SESSION['cod_fisc'] = $cod_fisc;
+		$_SESSION['provincia'] = $provincia;
+		$_SESSION['citta'] = $citta;
+		$_SESSION['indirizzo'] = $indirizzo;
+		$_SESSION['cap'] = $cap;
+		$_SESSION['telefono'] = $telefono;
+		$_SESSION['id'] = $results['max'];
+
+		header('location: myinfo.php');
+	  }
 	
   }
 
@@ -282,11 +295,7 @@ if (isset($_POST['pagamento']))
 		
 		
 		$id = $_SESSION['id'];
-		
-		$query = "SELECT ClienteID AS customerT FROM clienti WHERE CredenzialeID = '$id'";
-		$res_id = mysqli_query($db, $query);	  
-		$results = mysqli_fetch_array($res_id);
-		$customer = $results['customerT']; //id del cliente
+		$customer = $_SESSION['clienteID']; //id del cliente
 		
 		$OGGI = date("Y/m/d");
 		
@@ -303,7 +312,7 @@ if (isset($_POST['pagamento']))
 			$tot = number_format($values["item_quantity"] * $values["item_price"], 2);
 			
 			//inserimento nella tabella ordini
-			$query = "INSERT INTO ordini (ProdottoID, ClienteID, NomeCliente, EmailSpedizione,	TelefonoSpedizione, IndirizzoSpedizione, CittaSpedizione, ProvinciaSpedizione, CapSpedizione ,NomeProdotto, NumProdotti, DataOrdine, TotaleOrdine) 
+			$query = "INSERT INTO ordini (ProdottoID, ClienteID, NomeCliente, EmailSpedizione,	TelefonoSpedizione, IndirizzoSpedizione, CittaSpedizione, ProvinciaSpedizione, CapSpedizione ,NomeProdotto, NumProdotto, DataOrdine, TotaleOrdine) 
 			VALUES ('$item_id', '$customer', '$fullname', '$email', '$phone', '$address', '$city', '$state', '$zip', '$item_name',	'$item_quantity', '$OGGI' ,'$tot')";
   			mysqli_query($db, $query) or die(mysqli_error($db));
 			

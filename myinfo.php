@@ -18,7 +18,7 @@
 
 <html>
 <head>
-<meta charset="utf-8">
+	<meta charset="utf-8">
 	<title>Il mio account</title>
 	<link rel="stylesheet" type="text/css" href="eCommerceAssets/styles/style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -37,11 +37,12 @@
     <div id="headerLinks">
 		<a href="indexLog.php" title="Home">Home</a>
 		<a href="checkoutPage.php" title="Cart">Carrello</a>
+		<a href="storicoOrdini.php" title="Oridini">Ordini</a>
 		<a href="account.php?logout='1'" style="color: red;" title="sessID">Esci</a>
 		<a title=""></a>
 		</div>
 	</header> 
-<div class="content">
+<div class="content" style="font-size: 20px;">
   	<!-- notification message -->
   	<?php if (isset($_SESSION['success'])) : ?>
       <div class="error success" >
@@ -53,38 +54,44 @@
       	</h3>
       </div>
   	<?php endif ?>
-
-    <!-- logged in user information -->
-    <?php  if (isset($_SESSION['username'])) : ?>
-    	<p>Dati salvati correttamente! <strong>
-			<?php echo $_SESSION['username']; ?></strong></p>
-    	<p> <a href="account.php?logout='1'" style="color: red;">Esci</a> </p>
-    <?php endif ?>
-	<form>
 		<div class="input-group">
-  			<i class="fa fa-user-circle" aria-hidden="true"></i><?php echo " ".$_SESSION['name']." ".$_SESSION['cognome'];?>
+			<label>
+  				<i class="fa fa-user-circle" aria-hidden="true"></i><?php echo " ".$_SESSION['name']." ".$_SESSION['cognome'];?>
+			</label>
 		</div>
 		<div class="input-group">
-  			<i class="fa fa-birthday-cake" aria-hidden="true"></i><?php echo " ".$_SESSION['data']; ?>
+			<label>
+  				<i class="fa fa-birthday-cake" aria-hidden="true"></i><?php echo " ".$_SESSION['data']; ?>
+			</label>
 		</div>	
 		<div class="input-group">
-  			<i class="fa fa-id-card-o" aria-hidden="true"></i><?php echo " ".$_SESSION['cod_fisc']; ?>
+			<label>
+  				<i class="fa fa-id-card-o" aria-hidden="true"></i><?php echo " ".$_SESSION['cod_fisc']; ?>
+			</label>
 		</div>
 		<div class="input-group">
-  			<i class="fa fa-home" aria-hidden="true"></i></i><?php echo " ".$_SESSION['citta']." (".$_SESSION['cap'].")".", ".$_SESSION['provincia']; ?>
+			<label>
+  				<i class="fa fa-home" aria-hidden="true"></i></i><?php echo " ".$_SESSION['citta']." (".$_SESSION['cap'].")".", ".$_SESSION['provincia']; ?>
+			</label>
 		</div>
 		<div class="input-group">
-  			<i class="fa fa-map-marker" aria-hidden="true"></i><?php echo " ".$_SESSION['indirizzo']; ?>
+			<label>
+  				<i class="fa fa-map-marker" aria-hidden="true"></i><?php echo " ".$_SESSION['indirizzo']; ?>
+			</label>
 		</div>
 		<div class="input-group">
-  			<i class="fa fa-phone" aria-hidden="true"></i><?php echo " ".$_SESSION['telefono']; ?>
+			<label>
+  				<i class="fa fa-phone" aria-hidden="true"></i><?php echo " ".$_SESSION['telefono']; ?>
+			</label>
 		</div>
-		  	<div class="input-group">
-  		<button type="submit" class="btn" name="edit">Modifica dati</button>
-  		</div>
-		</div>
-	</form>
-			<div><a href="https://www.iubenda.com/privacy-policy/13672304" class="iubenda-black iubenda-embed" title="Privacy Policy ">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+		<form style="border: 0px;">
+			<div class="input-group">
+  				<button type="submit" class="btn" name="edit">Modifica dati</button>
+  			</div>
+		</form>
 	</div>
+		<div>
+			<a href="https://www.iubenda.com/privacy-policy/13672304" class="iubenda-black iubenda-embed" title="Privacy Policy ">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+		</div>
 </body>
 </html>
