@@ -24,6 +24,13 @@ $db = mysqli_connect('localhost', 'root', '', 'sito');
 <!doctype html>
 <html>
 <head>
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-KJ8W463');</script>
+	<!-- End Google Tag Manager -->
 	<meta charset="utf-8">
 	<title>Storico Ordini</title>
 	<link rel="stylesheet" type="text/css" href="eCommerceAssets/styles/style.css">
@@ -33,6 +40,10 @@ $db = mysqli_connect('localhost', 'root', '', 'sito');
 </head>
 
 <body>
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KJ8W463"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
 	<header> 
     	<div id="logo"> 
 			<a href="indexLog.php"><img src="eCommerceAssets/images/logoImage.png" alt="logo Amazoz" height="43" width="100"></a> 
