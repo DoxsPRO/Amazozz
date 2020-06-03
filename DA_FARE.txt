@@ -21,3 +21,4 @@ Lista delle cose da fare
 7) Controllo quantità magazzino
 8) miglioramento grafico informazioni account
 9) correzione logo nell'header
+10) gestione area riservata

@@ -1,4 +1,11 @@
-<?php include('eCommerceAssets/php/server.php');?>
+<?php 
+	include('eCommerceAssets/php/server.php');
+
+	if (isset($_SESSION['username'])) {
+  		$_SESSION['msg'] = "Hai già effettuato l'accesso!";
+  		header('location: indexLog.php');
+  	}
+?>
 <!DOCTYPE html>
 <html>
 <head>

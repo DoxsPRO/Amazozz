@@ -5,7 +5,11 @@
   	$_SESSION['msg'] = "Devi effettuare prima l'accesso!";
   	header('location: login.php');
   }
-
+	
+	if (!isset($_COOKIE["shopping_cart"])) {
+  		$_SESSION['msg'] = "Devi comprare prima qualcosa!";
+  		header('location: indexLog.php');
+  }
 ?>
 
 <!doctype html>
