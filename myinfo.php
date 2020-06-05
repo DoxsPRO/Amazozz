@@ -49,7 +49,7 @@
 		<a href="indexLog.php" title="Home">Home</a>
 		<a href="checkoutPage.php" title="Cart">Carrello</a>
 		<a href="storicoOrdini.php" title="Oridini">Ordini</a>
-		<a href="account.php?logout='1'" style="color: red;" title="sessID">Esci</a>
+		<a href="myinfo.php?logout='1'" style="color: red;" title="sessID">Esci</a>
 		<a title=""></a>
 		</div>
 	</header> 

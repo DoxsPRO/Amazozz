@@ -121,13 +121,6 @@ if(isset($_GET["clearall"]))
 <!DOCTYPE html>
 <html>
 	<head>
-		<!-- Google Tag Manager -->
-		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-		})(window,document,'script','dataLayer','GTM-KJ8W463');</script>
-		<!-- End Google Tag Manager -->
 		<meta charset="utf-8">
 		<title>Amazozz</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -143,10 +136,6 @@ if(isset($_GET["clearall"]))
 		<link rel="stylesheet" href="eCommerceAssets/styles/shopping.css"/>
 	</head>
 	<body>
-		<!-- Google Tag Manager (noscript) -->
-		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KJ8W463"
-		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-		<!-- End Google Tag Manager (noscript) -->
 		<header> 
 			<!-- This is the header content. It contains Logo and links -->
 			<div id="logo"> 
@@ -156,7 +145,7 @@ if(isset($_GET["clearall"]))
 			<div id="headerLinks">
 				<a href="myinfo.php" title="Account">Profilo</a>
 				<a href="storicoOrdini.php" title="Oridini">Ordini</a>
-				<a href="account.php?logout='1'" style="color: red;" title="sessID">Esci</a>
+				<a href="indexLog.php?logout='1'" style="color: red;" title="sessID">Esci</a>
 				<a title=""></a>
 			  </div>
 		 </header>
@@ -182,11 +171,11 @@ if(isset($_GET["clearall"]))
 
 						<h4 class="text-danger"><?php echo $row["Prezzo"]; ?> €</h4>
 
-						<input type="text" name="quantity" value="1" class="form-control" />
+						<input type="number" name="quantity" value="1" class="form-control" />
 						<input type="hidden" name="hidden_name" value="<?php echo $row["Nome"]; ?>" />
 						<input type="hidden" name="hidden_price" value="<?php echo $row["Prezzo"]; ?>" />
 						<input type="hidden" name="hidden_id" value="<?php echo $row["ProdottoID"]; ?>" />
-						<input type="submit" name="add_to_cart" style="margin-top:5px;background-color: orange; border-color: orange;" class="btn btn-success" value="Acquista" />
+						<input type="submit" name="add_to_cart" style="margin-top:5px;background-color: orange; border-color: orange;" class="btn btn-success" value="Aggiungi al carrello" />
 					</div>
 				</form>
 			</div>

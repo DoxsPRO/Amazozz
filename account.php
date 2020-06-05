@@ -5,12 +5,6 @@
   	$_SESSION['msg'] = "You must log in first";
   	header('location: login.php');
   }
-  if (isset($_GET['logout'])) {
-  	session_destroy();
-  	unset($_SESSION['username']);
-	setcookie("shopping_cart", "", time() - 1800);
-  	header("location: login.php");
-  }
 ?>
 
 

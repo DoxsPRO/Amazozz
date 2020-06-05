@@ -19,14 +19,12 @@ if (isset($_POST['reg_user'])) {
   $email = mysqli_real_escape_string($db, $_POST['email']);
   $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
   $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
-  $token = mysqli_real_escape_string($db, $_POST['token']);
 
   // form validation: ensure that the form is correctly filled ...
   // by adding (array_push()) corresponding error unto $errors array
   if (empty($username)) { array_push($errors, "Username è richiesto"); }
   if (empty($email)) { array_push($errors, "Email è richiesta"); }
   if (empty($password_1)) { array_push($errors, "Password è richiesta"); }
-  if ($token != "2O3W7HKjgTIH") { array_push($errors, "Token è richiesto/sbagliato"); }
   if ($password_1 != $password_2) {
 	array_push($errors, "Le due password non corrispondono");
   }
@@ -57,8 +55,8 @@ if (isset($_POST['reg_user'])) {
   		$_SESSION['username'] = $username;
   		$_SESSION['success'] = "Hai eseguito l'accesso correttamente!";
 	 	$_SESSION['email'] = $email;
-  		header('location: account.php');
   }
+	  		header('location: account.php');
 }
 	// ... 
 	
