@@ -5,7 +5,6 @@ Lista delle cose da fare
 3) Aggiunta selezione provincia
 4) Implementare privacy e sicurezza
 5) Formattazione nome prodotti (stefano)
-6) Criptazione numero carta e CVV
 11) visibilità password on off
 
 ----------------URGENTE----------------
@@ -26,3 +25,4 @@ Lista delle cose da fare
 10) gestione area riservata
 11) Aggiungere storico ordini per cliente
 12) renderizzamento register -> account (aggiunto exit alla fine)
+13) Criptazione CVV (numero carta non possibile)

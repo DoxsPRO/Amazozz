@@ -80,11 +80,11 @@ if (isset($_POST['login_user'])) {
 		$resultsCry = mysqli_fetch_array($res_get);
 		$hashedPassword = $resultsCry['crypt'];
 	  	
-  	//$password = md5($password);
+  		//$password = md5($password);
 	 if (password_verify($password, $hashedPassword)) {
    
-  	$query = "SELECT * FROM credenziali WHERE Username='$username' AND Password='$hashedPassword'";
-  	$results = mysqli_query($db, $query);
+  		$query = "SELECT * FROM credenziali WHERE Username='$username' AND Password='$hashedPassword'";
+  		$results = mysqli_query($db, $query);
 		 
 	  	//salvataggio informazioni utente
   		//if (mysqli_num_rows($results) == 1) {
@@ -292,8 +292,11 @@ if (isset($_POST['pagamento']))
 	 if (empty($cvv)) { 
 		 array_push($errors, "CVV è richiesto"); 
 	 }	
+	  	
+	  //PASSWORD_DEFAULT can store more than 60 characters (255 is the recommended width).
+	  $hashed_cvv = password_hash($cvv, PASSWORD_DEFAULT); // hash password
 	
-	if (count($errors) == 0) {
+	 if (count($errors) == 0) {
 		
 		
 		$id = $_SESSION['id'];
@@ -339,7 +342,7 @@ if (isset($_POST['pagamento']))
 			$newDate = date("Y-m-d", strtotime($expmonth));
 			
 			//salvo le informazioni della carta SELECT EXTRACT(YEAR_MONTH FROM "2017-06-15");
-			$query = "INSERT INTO carte (NumCarta, Proprietario, Scadenza, CVV2, ClienteID, OrdineID) VALUES ('$cardnumber', '$cardname', '$newDate', '$cvv', '$customer', '$ordineMax')";		
+			$query = "INSERT INTO carte (NumCarta, Proprietario, Scadenza, CVV2, ClienteID, OrdineID) VALUES ('$cardnumber', '$cardname', '$newDate', '$hashed_cvv', '$customer', '$ordineMax')";		
  			mysqli_query($db, $query) or die(mysqli_error($db));
 		}
 		
