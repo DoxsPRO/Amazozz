@@ -57,10 +57,6 @@
   	  <label>Conferma password</label>
   	  <input type="password" name="password_2" minlength="8" maxlength="20" title="Deve corrispondere con la password inserita prima!">
   	</div>
-	  <div class="input-group">
-  	  <label>Token</label>
-  	  <input type="password" name="token" value="2O3W7HKjgTIH" title="Devi possedere il token per poterti registrare!">
-  	</div>
   	<div class="input-group">
   	  <button type="submit" class="btn" name="reg_user">Registrati</button>
   	</div>
