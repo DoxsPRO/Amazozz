@@ -52,7 +52,7 @@ $db = mysqli_connect('localhost', 'root', '', 'sito');
 			<a href="indexLog.php" title="Home">Home</a>
 			<a href="myinfo.php" title="Account">Profilo</a>
 			<a href="checkoutPage.php" title="Cart">Carrello</a>
-			<a href="account.php?logout='1'" style="color: red;" title="sessID">Esci</a>
+			<a href="storicoOrdini.php?logout='1'" style="color: red;" title="sessID">Esci</a>
 			<a title=""></a>
 		</div>
 	</header>
@@ -85,7 +85,7 @@ $db = mysqli_connect('localhost', 'root', '', 'sito');
 		<td><?php echo $row['NomeProdotto']; ?></td>
 		<td><?php echo $row['NumProdotto']; ?></td>
 		<td><?php echo $row['DataOrdine']; ?></td>
-		<td><?php echo $row['TotaleOrdine']; ?></td>
+		<td><?php echo $row['TotaleOrdine']. " €"; ?></td>
 		  <?php
 				$temp1 = $row['OrdineID'];
 				

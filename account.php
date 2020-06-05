@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <?php 
+
  include('eCommerceAssets/php/server.php');
+
   if (!isset($_SESSION['username'])) {
   	$_SESSION['msg'] = "You must log in first";
   	header('location: login.php');
+  }
+
+ if (isset($_GET['logout'])) 
+ {
+  	session_destroy();
+  	unset($_SESSION['username']);
+	setcookie("shopping_cart", "", time() - 1800);
+  	header("location: index.html");
   }
 ?>
 
 
 <html>
 <head>
-	<!-- Google Tag Manager -->
-	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-	})(window,document,'script','dataLayer','GTM-KJ8W463');</script>
-	<!-- End Google Tag Manager -->
 	<meta charset="utf-8">
 	<title>Il mio account</title>
 	<link rel="stylesheet" type="text/css" href="eCommerceAssets/styles/style.css">
@@ -24,10 +27,6 @@
 	<link rel="icon" href="eCommerceAssets\images\favicon.png" height="48" width="48"/>
 </head>
 <body>
-	<!-- Google Tag Manager (noscript) -->
-	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KJ8W463"
-	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-	<!-- End Google Tag Manager (noscript) -->
 	<header> 
 			<!-- This is the header content. It contains Logo and links -->
 			<div id="logo"> 
@@ -51,7 +50,7 @@
     <!-- logged in user information -->
     <?php  if (isset($_SESSION['username'])) : ?>
     	<p>Benvenuto nel tuo primo accesso! Inserisci i tuoi dati <strong><?php echo $_SESSION['username']; ?></strong></p>
-    	<p> <a href="account.php?logout='1'" style="color: red;">Esci</a> </p>
+    	<p><a href="account.php?logout=''" style="color: red;">Esci</a></p>
     <?php endif ?>
 </div>
 	 <form method="post" action="account.php">

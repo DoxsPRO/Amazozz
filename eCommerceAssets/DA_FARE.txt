@@ -10,7 +10,7 @@ Lista delle cose da fare
 
 ----------------URGENTE----------------
 
-1)renderizzamento register -> account
+
 
 ----------------FATTO----------------
 
@@ -25,3 +25,4 @@ Lista delle cose da fare
 9) correzione logo nell'header
 10) gestione area riservata
 11) Aggiungere storico ordini per cliente
+12) renderizzamento register -> account (aggiunto exit alla fine)

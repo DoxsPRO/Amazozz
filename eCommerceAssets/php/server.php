@@ -55,8 +55,10 @@ if (isset($_POST['reg_user'])) {
   		$_SESSION['username'] = $username;
   		$_SESSION['success'] = "Hai eseguito l'accesso correttamente!";
 	 	$_SESSION['email'] = $email;
+	  	header('location: account.php') or die;
+  		exit;
   }
-	  		header('location: account.php');
+
 }
 	// ... 
 	
@@ -164,6 +166,7 @@ if (isset($_POST['login_user'])) {
   	  	$_SESSION['success'] = "Hai eseguito l'accesso correttamente!";
 		
   	  	header('location: indexLog.php');
+		exit;
   		}
 	  else {
   		array_push($errors, "Username/password sbagliate");
@@ -233,6 +236,7 @@ if (isset($_POST['subit_data'])) {
 		$_SESSION['id'] = $results['max'];
 
 		header('location: myinfo.php');
+		  exit;
 	  }
 	
   }
@@ -343,6 +347,7 @@ if (isset($_POST['pagamento']))
 		setcookie("shopping_cart", "", time() - 1800);
 		
 		header('location: indexLog.php');
+		exit;
 	}
 }
 
