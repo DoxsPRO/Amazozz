@@ -244,7 +244,8 @@ if (isset($_POST['subit_data'])) {
 if (isset($_POST['pagamento']))
 {
 	//infomazioni spedizione
-	$fullname = mysqli_real_escape_string($db, $_POST['fullname']);
+	$fname = mysqli_real_escape_string($db, $_POST['fullname']);
+	$cname = mysqli_real_escape_string($db, $_POST['subname']);
 	$email = mysqli_real_escape_string($db, $_POST['email']);
 	$phone = mysqli_real_escape_string($db, $_POST['phone']);
 	$address = mysqli_real_escape_string($db, $_POST['address']);
@@ -254,11 +255,15 @@ if (isset($_POST['pagamento']))
 	
 	//informazioni carta
 	$cardname = mysqli_real_escape_string($db, $_POST['cardname']);
+	$cardsurname = mysqli_real_escape_string($db, $_POST['cardsurn']);
 	$cardnumber = mysqli_real_escape_string($db, $_POST['cardnumber']);
 	$expmonth = mysqli_real_escape_string($db, $_POST['expmonth']);
 	$cvv = mysqli_real_escape_string($db, $_POST['cvv']);
 	
-	 if (empty($fullname)) { 
+	 if (empty($fname)) { 
+		 array_push($errors, "Nome è richiesto"); 
+	 }
+	if (empty($cname)) { 
 		 array_push($errors, "Nome è richiesto"); 
 	 }
 	 if (empty($email)) { 
@@ -281,6 +286,9 @@ if (isset($_POST['pagamento']))
 	 }
 	
 	 if (empty($cardname)) { 
+		 array_push($errors, "Titolare carta è richiesto"); 
+	 }
+	if (empty($cardsurname)) { 
 		 array_push($errors, "Titolare carta è richiesto"); 
 	 }
 	 if (empty($cardnumber)) { 
@@ -317,8 +325,8 @@ if (isset($_POST['pagamento']))
 			$tot = number_format($values["item_quantity"] * $values["item_price"], 2);
 			
 			//inserimento nella tabella ordini
-			$query = "INSERT INTO ordini (ProdottoID, ClienteID, NomeCliente, EmailSpedizione,	TelefonoSpedizione, IndirizzoSpedizione, CittaSpedizione, ProvinciaSpedizione, CapSpedizione ,NomeProdotto, NumProdotto, DataOrdine, TotaleOrdine) 
-			VALUES ('$item_id', '$customer', '$fullname', '$email', '$phone', '$address', '$city', '$state', '$zip', '$item_name',	'$item_quantity', '$OGGI' ,'$tot')";
+			$query = "INSERT INTO ordini (ProdottoID, ClienteID, NomeCliente, CognomeCliente, EmailSpedizione,	TelefonoSpedizione, IndirizzoSpedizione, CittaSpedizione, ProvinciaSpedizione, CapSpedizione ,NomeProdotto, NumProdotto, DataOrdine, TotaleOrdine) 
+			VALUES ('$item_id', '$customer', '$fname', '$cname', '$email', '$phone', '$address', '$city', '$state', '$zip', '$item_name', '$item_quantity', '$OGGI' ,'$tot')";
   			mysqli_query($db, $query) or die(mysqli_error($db));
 			
 			//prendo la quantità del prodotto
@@ -342,7 +350,7 @@ if (isset($_POST['pagamento']))
 			$newDate = date("Y-m-d", strtotime($expmonth));
 			
 			//salvo le informazioni della carta SELECT EXTRACT(YEAR_MONTH FROM "2017-06-15");
-			$query = "INSERT INTO carte (NumCarta, Proprietario, Scadenza, CVV2, ClienteID, OrdineID) VALUES ('$cardnumber', '$cardname', '$newDate', '$hashed_cvv', '$customer', '$ordineMax')";		
+			$query = "INSERT INTO carte (NumCarta, NomeProprietario, CognomeProprietario, Scadenza, CVV2, ClienteID, OrdineID) VALUES ('$cardnumber', '$cardname', '$cardsurname','$newDate', '$hashed_cvv', '$customer', '$ordineMax')";		
  			mysqli_query($db, $query) or die(mysqli_error($db));
 		}
 		

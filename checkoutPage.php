@@ -46,9 +46,16 @@
 				<div class="row">
 				  <div class="col-50">
 					<h3>Dati spedizione</h3>
-					<label for="fname"><i class="fa fa-user"></i> Nome</label>
-					<input type="text" id="fname" name="fullname" value="<?php echo $_SESSION['name'].' '.$_SESSION['cognome'];?>" pattern="[A-Za-z\s]{2,}" maxlength="100" title="Inserisci il tuo nome completo">
-					  
+					 <div class="row">
+					  <div class="col-50">
+							<label for="fname"><i class="fa fa-user"></i> Nome</label>
+							<input type="text" id="fname" name="fullname" value="<?php echo $_SESSION['name'];?>" pattern="[A-Za-z\s]{2,}" maxlength="100" title="Inserisci il tuo nome completo">
+				  	  </div>
+					  <div class="col-50">
+						  	<label for="fname"><i class="fa fa-user"></i> Cognome</label>
+							<input type="text" id="cname" name="subname" value="<?php echo $_SESSION['cognome'];?>" pattern="[A-Za-z\s]{2,}" maxlength="50" title="Inserisci il tuo cognome">
+					  </div>
+					</div>
 					<label for="email"><i class="fa fa-envelope"></i> Email</label>
 					<input type="text" id="email" name="email" value="<?php echo $_SESSION['email'];?>" >
 					  
@@ -82,9 +89,16 @@
 					  <i class="fa fa-cc-mastercard" style="color:red;"></i>
 					  <i class="fa fa-cc-discover" style="color:orange;"></i>
 					</div>
-					<label for="cname">Nome titolare</label>
-					<input type="text" id="cname" name="cardname" pattern="[A-Za-z\s]{2,}" maxlength="100" title="Inserisci il tuo nome completo">
-					  
+					  <div class="row">
+					  	<div class="col-50">
+							<label for="cname">Nome titolare</label>
+							<input type="text" id="cname" name="cardname" pattern="[A-Za-z\s]{2,}" maxlength="50" title="Inserisci il nome del titolare della carta">
+						</div>
+						<div class="col-50">
+							<label for="cname">Cognome titolare</label>
+							<input type="text" id="suname" name="cardsurn" pattern="[A-Za-z\s]{2,}" maxlength="50" title="Inserisci il tuo cognome del titolare della carta">
+						 </div>
+					  </div>
 					<label for="ccnum">Numero carta</label>
 					<input type="text" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" maxlength="19">
 					  

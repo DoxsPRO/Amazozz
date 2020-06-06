@@ -2,6 +2,7 @@
 
 //index.php
 session_start();
+			
 
 if (!isset($_SESSION['username'])) {
   	$_SESSION['msg'] = "Devi fare l'accesso prima!";
@@ -155,7 +156,7 @@ if(isset($_GET["clearall"]))
 
 			<br /><br />
 			<?php
-			$query = "SELECT * FROM prodotti WHERE Quantita > 0";
+			$query = "SELECT * FROM prodotti WHERE Quantita > 0 ";
 			$statement = $connect->prepare($query);
 			$statement->execute();
 			$result = $statement->fetchAll();
@@ -167,10 +168,13 @@ if(isset($_GET["clearall"]))
 					<div style="border:1px solid #333; background-color:#f1f1f1; border-radius:5px; padding:16px;" align="center">
 						<img src="<?php echo $row["immagine"]; ?>" class="img-responsive" /><br />
 
-						<h4 class="text-info"><?php echo $row["Nome"]; ?></h4>
+						<h4 class="text-info" style="font-size: 20px;"><?php echo $row["Nome"]; ?></h4>
+						
+						<h4 class="text-info" style="font-size: 15px; color: black;"><?php echo $row["Specifiche"]; ?></h4>
 
 						<h4 class="text-danger"><?php echo $row["Prezzo"]; ?> €</h4>
 
+						
 						<input type="number" name="quantity" value="1" class="form-control" />
 						<input type="hidden" name="hidden_name" value="<?php echo $row["Nome"]; ?>" />
 						<input type="hidden" name="hidden_price" value="<?php echo $row["Prezzo"]; ?>" />
