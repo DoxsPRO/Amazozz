@@ -8,4 +8,4 @@ Stefano Fierro
 Francesco Napolano
 Lorenzo Cicatelli
 
-## Licensa
+## Licenza
