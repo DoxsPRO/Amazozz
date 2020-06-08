@@ -1,48 +1,48 @@
 <?php
 session_start();
-// initializing variables
+// inizializzazione variabili
 $username = "";
 $email    = "";
 $errors = array(); 
  
-// connect to the database
+// connessione al database
 //$db = mysqli_connect('localhost', 'ecommercegalilei', '', 'my_ecommercegalilei');
 $db = mysqli_connect('localhost', 'root', '', 'sito');
 if ($db->connect_errno) {
 	array_push($errors,"Impossibile connettersi al server: " . $conn->connect_error);
-    }
+}
 
-// REGISTER USER
+// Registrazione utente
 if (isset($_POST['reg_user'])) {
-  // receive all input values from the form
-  $username = mysqli_real_escape_string($db, $_POST['username']);
-  $email = mysqli_real_escape_string($db, $_POST['email']);
-  $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
-  $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
+	  // receive all input values from the form
+	$username = mysqli_real_escape_string($db, $_POST['username']);
+	$email = mysqli_real_escape_string($db, $_POST['email']);
+	$password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
+	$password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
 
-  // form validation: ensure that the form is correctly filled ...
-  // by adding (array_push()) corresponding error unto $errors array
-  if (empty($username)) { array_push($errors, "Username è richiesto"); }
-  if (empty($email)) { array_push($errors, "Email è richiesta"); }
-  if (empty($password_1)) { array_push($errors, "Password è richiesta"); }
-  if ($password_1 != $password_2) {
-	array_push($errors, "Le due password non corrispondono");
-  }
+	// form validation: ensure that the form is correctly filled ...
+	// by adding (array_push()) corresponding error unto $errors array
+	if (empty($username)) { array_push($errors, "Username è richiesto"); }
+	if (empty($email)) { array_push($errors, "Email è richiesta"); }
+	if (empty($password_1)) { array_push($errors, "Password è richiesta"); }
+	if ($password_1 != $password_2) {
+		array_push($errors, "Le due password non corrispondono");
+  	}
 
-  // first check the database to make sure 
-  // a user does not already exist with the same username and/or email
+  	// first check the database to make sure 
+  	// a user does not already exist with the same username and/or email
 	$sql_u = "SELECT * FROM clienti WHERE Username='$username'";
   	$sql_e = "SELECT * FROM clienti WHERE Email='$email'";
   	$res_u = mysqli_query($db, $sql_u);
   	$res_e = mysqli_query($db, $sql_e);
 
   	if (mysqli_num_rows($res_u) > 0) {
-  	  array_push($errors, "Username esiste già");	
-  	}else if(mysqli_num_rows($res_e) > 0){
-  	  array_push($errors, "Email esiste già"); 
+		array_push($errors, "Username esiste già");	
+  	} else if(mysqli_num_rows($res_e) > 0){
+  	  	array_push($errors, "Email esiste già"); 
 	}
   // Finally, register user if there are no errors in the form
-  if (count($errors) == 0) {
+  	if (count($errors) == 0) {
 		//è buona norma non salvare le password in chiaro, ma crittografate
   		//$password = md5($password_1);//encrypt the password before saving in the database
 	  	
@@ -60,7 +60,7 @@ if (isset($_POST['reg_user'])) {
   }
 
 }
-	// ... 
+ 
 	
 if (isset($_POST['login_user'])) {
   $username = mysqli_real_escape_string($db, $_POST['username']);
@@ -81,87 +81,86 @@ if (isset($_POST['login_user'])) {
 		$hashedPassword = $resultsCry['crypt'];
 	  	
   		//$password = md5($password);
-	 if (password_verify($password, $hashedPassword)) {
+	 	if (password_verify($password, $hashedPassword)) {
    
-  		$query = "SELECT * FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
-  		$results = mysqli_query($db, $query);
-		 
-	  	//salvataggio informazioni utente
-  		//if (mysqli_num_rows($results) == 1) {
-		 
-		//selezione ClienteID 
-		$sql_get = "SELECT ClienteID AS customerT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
-		$res_get = mysqli_query($db, $sql_get);	  
-		$results = mysqli_fetch_array($res_get);
-		$_SESSION['clienteID'] = $results['customerT']; 
-		
-		//selezione nome
-		$sql_get = "SELECT Nome AS nameT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
-		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
-		$results = mysqli_fetch_array($res_get);
-		$_SESSION['name'] = $results['nameT'];
-		
-		//selezione cognome
-		$sql_get = "SELECT Cognome AS cognomeT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
-		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
-		$results = mysqli_fetch_array($res_get);
-		$_SESSION['cognome'] = $results['cognomeT'];
-		
-		//selezione data
-		$sql_get = "SELECT Data AS dataT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
-		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
-		$results = mysqli_fetch_array($res_get);
-		$_SESSION['data'] = $results['dataT'];
-		
-		//selezione codice fiscale
-		$sql_get = "SELECT CodiceFiscale AS codfT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
-		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
-		$results = mysqli_fetch_array($res_get);
-		$_SESSION['cod_fisc'] = $results['codfT'];
+			$query = "SELECT * FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
+			$results = mysqli_query($db, $query);
 
-		//selezione provincia
-		$sql_get = "SELECT Provincia AS provinciaT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
-		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
-		$results = mysqli_fetch_array($res_get);
-		$_SESSION['provincia'] = $results['provinciaT'];
-		 
-		//selezione citta
-		$sql_get = "SELECT Citta AS cittaT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
-		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
-		$results = mysqli_fetch_array($res_get);
-		$_SESSION['citta'] = $results['cittaT'];
-		
-		//selezione indirizzo
-		$sql_get = "SELECT Indirizzo AS indirizzoT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
-		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
-		$results = mysqli_fetch_array($res_get);
-		$_SESSION['indirizzo'] = $results['indirizzoT'];
-		
-		//selezione CAP
-		$sql_get = "SELECT CAP AS capT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
-		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
-		$results = mysqli_fetch_array($res_get);
-		$_SESSION['cap'] = $results['capT'];
-		
-		//selezione telefono
-		$sql_get = "SELECT Telefono AS telefonoT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
-		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
-		$results = mysqli_fetch_array($res_get);
-		$_SESSION['telefono'] = $results['telefonoT'];
-		
-		//selezione email
-		$sql_get = "SELECT email AS emailT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
-		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
-		$results = mysqli_fetch_array($res_get);
-		$_SESSION['email'] = $results['emailT'];
-		 
+			//salvataggio informazioni utente
 
-		
-  	  	$_SESSION['username'] = $username;
-  	  	$_SESSION['success'] = "Hai eseguito l'accesso correttamente!";
-		
-  	  	header('location: indexLog.php');
-		exit;
+			//selezione ClienteID 
+			$sql_get = "SELECT ClienteID AS customerT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
+			$res_get = mysqli_query($db, $sql_get);	  
+			$results = mysqli_fetch_array($res_get);
+			$_SESSION['clienteID'] = $results['customerT']; 
+
+			//selezione nome
+			$sql_get = "SELECT Nome AS nameT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
+			$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
+			$results = mysqli_fetch_array($res_get);
+			$_SESSION['name'] = $results['nameT'];
+
+			//selezione cognome
+			$sql_get = "SELECT Cognome AS cognomeT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
+			$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
+			$results = mysqli_fetch_array($res_get);
+			$_SESSION['cognome'] = $results['cognomeT'];
+
+			//selezione data
+			$sql_get = "SELECT Data AS dataT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
+			$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
+			$results = mysqli_fetch_array($res_get);
+			$_SESSION['data'] = $results['dataT'];
+
+			//selezione codice fiscale
+			$sql_get = "SELECT CodiceFiscale AS codfT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
+			$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
+			$results = mysqli_fetch_array($res_get);
+			$_SESSION['cod_fisc'] = $results['codfT'];
+
+			//selezione provincia
+			$sql_get = "SELECT Provincia AS provinciaT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
+			$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
+			$results = mysqli_fetch_array($res_get);
+			$_SESSION['provincia'] = $results['provinciaT'];
+
+			//selezione citta
+			$sql_get = "SELECT Citta AS cittaT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
+			$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
+			$results = mysqli_fetch_array($res_get);
+			$_SESSION['citta'] = $results['cittaT'];
+
+			//selezione indirizzo
+			$sql_get = "SELECT Indirizzo AS indirizzoT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
+			$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
+			$results = mysqli_fetch_array($res_get);
+			$_SESSION['indirizzo'] = $results['indirizzoT'];
+
+			//selezione CAP
+			$sql_get = "SELECT CAP AS capT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
+			$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
+			$results = mysqli_fetch_array($res_get);
+			$_SESSION['cap'] = $results['capT'];
+
+			//selezione telefono
+			$sql_get = "SELECT Telefono AS telefonoT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
+			$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
+			$results = mysqli_fetch_array($res_get);
+			$_SESSION['telefono'] = $results['telefonoT'];
+
+			//selezione email
+			$sql_get = "SELECT email AS emailT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
+			$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
+			$results = mysqli_fetch_array($res_get);
+			$_SESSION['email'] = $results['emailT'];
+
+
+
+			$_SESSION['username'] = $username;
+			$_SESSION['success'] = "Hai eseguito l'accesso correttamente!";
+
+			header('location: indexLog.php');
+			exit;
   		}
 	  else {
   		array_push($errors, "Username/password sbagliate");
@@ -180,33 +179,29 @@ if (isset($_POST['subit_data'])) {
 	$cap = mysqli_real_escape_string($db, $_POST['cap']);
 	$telefono = mysqli_real_escape_string($db, $_POST['telefono']);
 	
-	 if (empty($name)) {
-  	array_push($errors, "Nome è un campo obbligatorio!");}
-	 if (empty($cognome)) {
-  	array_push($errors, "Cognome è un campo obbligatorio!");}
-		 if (empty($data)) {
-  	array_push($errors, "Data di nascita è un campo obbligatorio!");}
-	 if (empty($cod_fisc)) {
-  	array_push($errors, "Codice fiscale è un campo obbligatorio!");}
-			 if (empty($provincia)) {
-  	array_push($errors, "Provincia è un campo obbligatorio!");}
-		 if (empty($citta)) {
-  	array_push($errors, "Città è un campo obbligatorio!");}
-	 if (empty($indirizzo)) {
-  	array_push($errors, "Indirizzo è un campo obbligatorio!");}
-		 if (empty($cap)) {
-  	array_push($errors, "Cap è un campo obbligatorio!");}
-	 if (empty($telefono)) {
-  	array_push($errors, "Telefono è un campo obbligatorio!");}
+	if (empty($name)) {
+  		array_push($errors, "Nome è un campo obbligatorio!");}
+	if (empty($cognome)) {
+  		array_push($errors, "Cognome è un campo obbligatorio!");}
+	if (empty($data)) {
+  		array_push($errors, "Data di nascita è un campo obbligatorio!");}
+	if (empty($cod_fisc)) {
+  		array_push($errors, "Codice fiscale è un campo obbligatorio!");}
+	if (empty($provincia)) {
+  		array_push($errors, "Provincia è un campo obbligatorio!");}
+	if (empty($citta)) {
+  		array_push($errors, "Città è un campo obbligatorio!");}
+	if (empty($indirizzo)) {
+  		array_push($errors, "Indirizzo è un campo obbligatorio!");}
+	if (empty($cap)) {
+  		array_push($errors, "Cap è un campo obbligatorio!");}
+	if (empty($telefono)) {
+  		array_push($errors, "Telefono è un campo obbligatorio!");}
 	
 	$newDate = date("Y-m-d", strtotime($data));
 	
-	  if (count($errors) == 0) {
+	if (count($errors) == 0) {
 		  
-		/*$sql_id = "SELECT MAX(ClienteID) AS max FROM clienti";
-		$res_id = mysqli_query($db, $sql_id);	  
-		$results = mysqli_fetch_array($res_id);
-		$temp = $results['max'];*/
 		$temp2 = $_SESSION['username'];
 
 		$query = "UPDATE clienti SET Nome = '$name', Cognome = '$cognome', Data = '$newDate', CodiceFiscale = '$cod_fisc', Provincia = '$provincia', Citta = '$citta', Indirizzo = '$indirizzo', CAP = '$cap', Telefono = '$telefono'  WHERE Username = '$temp2'";	  
@@ -231,7 +226,7 @@ if (isset($_POST['subit_data'])) {
 		$_SESSION['id'] = $results['max'];
 
 		header('location: myinfo.php');
-		  exit;
+		exit;
 	  }
 	
   }
@@ -348,7 +343,6 @@ if (isset($_POST['pagamento']))
 			$query = "INSERT INTO carte (NumCarta, NomeProprietario, CognomeProprietario, Scadenza, CVV2, ClienteID, OrdineID) VALUES ('$cardnumber', '$cardname', '$cardsurname','$newDate', '$hashed_cvv', '$customer', '$ordineMax')";		
  			mysqli_query($db, $query) or die(mysqli_error($db));
 		}
-		
 		
 		setcookie("shopping_cart", "", time() - 1800);
 		
