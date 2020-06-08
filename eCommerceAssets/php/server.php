@@ -31,8 +31,8 @@ if (isset($_POST['reg_user'])) {
 
   // first check the database to make sure 
   // a user does not already exist with the same username and/or email
-	$sql_u = "SELECT * FROM credenziali WHERE Username='$username'";
-  	$sql_e = "SELECT * FROM credenziali WHERE Email='$email'";
+	$sql_u = "SELECT * FROM clienti WHERE Username='$username'";
+  	$sql_e = "SELECT * FROM clienti WHERE Email='$email'";
   	$res_u = mysqli_query($db, $sql_u);
   	$res_e = mysqli_query($db, $sql_e);
 
@@ -49,7 +49,7 @@ if (isset($_POST['reg_user'])) {
 	  	//PASSWORD_DEFAULT can store more than 60 characters (255 is the recommended width).
 		$hashedPassword = password_hash($password_1, PASSWORD_DEFAULT); // hash password
 	  
-  		$query = "INSERT INTO credenziali (Username, Password, Email) 
+  		$query = "INSERT INTO clienti (Username, Password, Email) 
   			  VALUES('$username', '$hashedPassword', '$email')";
   		mysqli_query($db, $query)or die(mysqli_error($db));
   		$_SESSION['username'] = $username;
@@ -75,7 +75,7 @@ if (isset($_POST['login_user'])) {
 
   if (count($errors) == 0) {
 	  
-	  	$sql_get = "SELECT Password AS crypt FROM credenziali WHERE Username='$username'";
+	  	$sql_get = "SELECT Password AS crypt FROM clienti WHERE Username='$username'";
 		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
 		$resultsCry = mysqli_fetch_array($res_get);
 		$hashedPassword = $resultsCry['crypt'];
@@ -83,84 +83,79 @@ if (isset($_POST['login_user'])) {
   		//$password = md5($password);
 	 if (password_verify($password, $hashedPassword)) {
    
-  		$query = "SELECT * FROM credenziali WHERE Username='$username' AND Password='$hashedPassword'";
+  		$query = "SELECT * FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
   		$results = mysqli_query($db, $query);
 		 
 	  	//salvataggio informazioni utente
   		//if (mysqli_num_rows($results) == 1) {
 		 
-		//selezione CredenzialeID
-		$sql_id = "SELECT CredenzialeID AS max FROM credenziali WHERE Username='$username' AND Password='$hashedPassword'";
-		$res_id = mysqli_query($db, $sql_id) or die(mysqli_error($db)); 
-		$results = mysqli_fetch_array($res_id);
-		$_SESSION['id'] = $results['max'];
-		$temp = $results['max'];
+		//selezione ClienteID 
+		$sql_get = "SELECT ClienteID AS customerT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
+		$res_get = mysqli_query($db, $sql_get);	  
+		$results = mysqli_fetch_array($res_get);
+		$_SESSION['clienteID'] = $results['customerT']; 
 		
 		//selezione nome
-		$sql_get = "SELECT Nome AS nameT FROM clienti WHERE CredenzialeID = '$temp'";
+		$sql_get = "SELECT Nome AS nameT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
 		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
 		$results = mysqli_fetch_array($res_get);
 		$_SESSION['name'] = $results['nameT'];
 		
 		//selezione cognome
-		$sql_get = "SELECT Cognome AS cognomeT FROM clienti WHERE CredenzialeID = '$temp'";
+		$sql_get = "SELECT Cognome AS cognomeT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
 		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
 		$results = mysqli_fetch_array($res_get);
 		$_SESSION['cognome'] = $results['cognomeT'];
 		
 		//selezione data
-		$sql_get = "SELECT Data AS dataT FROM clienti WHERE CredenzialeID = '$temp'";
+		$sql_get = "SELECT Data AS dataT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
 		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
 		$results = mysqli_fetch_array($res_get);
 		$_SESSION['data'] = $results['dataT'];
 		
 		//selezione codice fiscale
-		$sql_get = "SELECT CodiceFiscale AS codfT FROM clienti WHERE CredenzialeID = '$temp'";
+		$sql_get = "SELECT CodiceFiscale AS codfT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
 		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
 		$results = mysqli_fetch_array($res_get);
 		$_SESSION['cod_fisc'] = $results['codfT'];
 
 		//selezione provincia
-		$sql_get = "SELECT Provincia AS provinciaT FROM clienti WHERE CredenzialeID = '$temp'";
+		$sql_get = "SELECT Provincia AS provinciaT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
 		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
 		$results = mysqli_fetch_array($res_get);
 		$_SESSION['provincia'] = $results['provinciaT'];
 		 
 		//selezione citta
-		$sql_get = "SELECT Citta AS cittaT FROM clienti WHERE CredenzialeID = '$temp'";
+		$sql_get = "SELECT Citta AS cittaT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
 		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
 		$results = mysqli_fetch_array($res_get);
 		$_SESSION['citta'] = $results['cittaT'];
 		
 		//selezione indirizzo
-		$sql_get = "SELECT Indirizzo AS indirizzoT FROM clienti WHERE CredenzialeID = '$temp'";
+		$sql_get = "SELECT Indirizzo AS indirizzoT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
 		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
 		$results = mysqli_fetch_array($res_get);
 		$_SESSION['indirizzo'] = $results['indirizzoT'];
 		
 		//selezione CAP
-		$sql_get = "SELECT CAP AS capT FROM clienti WHERE CredenzialeID = '$temp'";
+		$sql_get = "SELECT CAP AS capT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
 		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
 		$results = mysqli_fetch_array($res_get);
 		$_SESSION['cap'] = $results['capT'];
 		
 		//selezione telefono
-		$sql_get = "SELECT Telefono AS telefonoT FROM clienti WHERE CredenzialeID = '$temp'";
+		$sql_get = "SELECT Telefono AS telefonoT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
 		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
 		$results = mysqli_fetch_array($res_get);
 		$_SESSION['telefono'] = $results['telefonoT'];
 		
 		//selezione email
-		$sql_get = "SELECT email AS emailT FROM credenziali WHERE CredenzialeID = '$temp'";
+		$sql_get = "SELECT email AS emailT FROM clienti WHERE Username='$username' AND Password='$hashedPassword'";
 		$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
 		$results = mysqli_fetch_array($res_get);
 		$_SESSION['email'] = $results['emailT'];
 		 
-		//selezione ClienteID 
-		$sql_get = "SELECT ClienteID AS customerT FROM clienti WHERE CredenzialeID = '$temp'";
-		$res_get = mysqli_query($db, $sql_get);	  
-		$results = mysqli_fetch_array($res_get);
-		$_SESSION['clienteID'] = $results['customerT']; 
+
 		
   	  	$_SESSION['username'] = $username;
   	  	$_SESSION['success'] = "Hai eseguito l'accesso correttamente!";
@@ -208,17 +203,17 @@ if (isset($_POST['subit_data'])) {
 	
 	  if (count($errors) == 0) {
 		  
-		$sql_id = "SELECT MAX(CredenzialeID) AS max FROM credenziali";
+		/*$sql_id = "SELECT MAX(ClienteID) AS max FROM clienti";
 		$res_id = mysqli_query($db, $sql_id);	  
 		$results = mysqli_fetch_array($res_id);
-		$temp = $results['max'];
+		$temp = $results['max'];*/
+		$temp2 = $_SESSION['username'];
 
-		$query = "INSERT INTO clienti (Nome, Cognome, Data, CodiceFiscale, Provincia, Citta, Indirizzo, CAP, Telefono, CredenzialeID) 
-				  VALUES('$name', '$cognome', '$newDate', '$cod_fisc', '$provincia', '$citta', '$indirizzo', '$cap', '$telefono', '$temp')";	  
+		$query = "UPDATE clienti SET Nome = '$name', Cognome = '$cognome', Data = '$newDate', CodiceFiscale = '$cod_fisc', Provincia = '$provincia', Citta = '$citta', Indirizzo = '$indirizzo', CAP = '$cap', Telefono = '$telefono'  WHERE Username = '$temp2'";	  
 		mysqli_query($db, $query)or die(mysqli_error($db));
 		  
 		//selezione ClienteID 
-		$sql_get = "SELECT ClienteID AS customerT FROM clienti WHERE CredenzialeID = '$temp'";
+		$sql_get = "SELECT ClienteID AS customerT FROM clienti WHERE Username = '$temp2'";
 		$res_get = mysqli_query($db, $sql_get);	  
 		$results = mysqli_fetch_array($res_get);
 		$_SESSION['clienteID'] = $results['customerT']; 
