@@ -77,19 +77,30 @@ $db = mysqli_connect('localhost', 'root', '', 'sito');
 			$result = $statement->fetchAll();
 			foreach($result as $row)
 			{
+				//Selezioni prodotto id e quantità
+				$tempOrdine = $row['OrdineID'];
+				$sql_get = "SELECT ProdottoID, NumPezzi FROM dettaglioordini WHERE OrdineID='$tempOrdine'";
+				$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
+				$resultsCry = mysqli_fetch_array($res_get);
+				$prodID = $resultsCry['ProdottoID'];
+				$num_pezzi = $resultsCry['NumPezzi'];
+				
+				//Selezioni nome prodotto
+				$sql_get = "SELECT Nome FROM prodotti WHERE ProdottoID='$prodID'";
+				$res_get = mysqli_query($db, $sql_get) or die(mysqli_error($db));
+				$resultsCry = mysqli_fetch_array($res_get);
+				$nome_prodotto = $resultsCry['Nome'];
 		?>
 	  <tr>
 		<td><?php echo $row['OrdineID']; ?></td>
-		<td><?php echo $row['ProdottoID']; ?></td>
+		<td><?php echo $prodID; ?></td>
 		<td><?php echo $row['IndirizzoSpedizione']." ".$row['CittaSpedizione']." (".$row['CapSpedizione'].")".", ".$row['ProvinciaSpedizione']; ?></td>
-		<td><?php echo $row['NomeProdotto']; ?></td>
-		<td><?php echo $row['NumProdotto']; ?></td>
+		<td><?php echo $nome_prodotto; ?></td>
+		<td><?php echo $num_pezzi; ?></td>
 		<td><?php echo $row['DataOrdine']; ?></td>
 		<td><?php echo $row['TotaleOrdine']. " €"; ?></td>
-		  <?php
-				$temp1 = $row['OrdineID'];
-				
-				$sql_id = "SELECT NumCarta FROM carte WHERE ClienteID = '$cliente' AND OrdineID = '$temp1'";
+		  <?php			
+				$sql_id = "SELECT NumCarta FROM carte WHERE ClienteID = '$cliente' AND OrdineID = '$tempOrdine'";
 				$res_id = mysqli_query($db, $sql_id);	  
 				$carta_id = mysqli_fetch_array($res_id);
 		  ?>

@@ -45,7 +45,7 @@
 
 				<div class="row">
 				  <div class="col-50">
-					<h3>Dati spedizione</h3>
+					<h3>Dati destinatario dell'ordine</h3>
 					 <div class="row">
 					  <div class="col-50">
 							<label for="fname"><i class="fa fa-user"></i> Nome</label>

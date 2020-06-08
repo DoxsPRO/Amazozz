@@ -1,6 +1,5 @@
 Lista delle cose da fare
 
-1) Normalizzazione tabelle database
 2) Ricreazione schema e/r
 3) Aggiunta selezione provincia
 4) Implementare privacy e sicurezza
@@ -26,3 +25,4 @@ Lista delle cose da fare
 11) Aggiungere storico ordini per cliente
 12) renderizzamento register -> account (aggiunto exit alla fine)
 13) Criptazione CVV (numero carta non possibile)
+14) Normalizzazione tabelle database

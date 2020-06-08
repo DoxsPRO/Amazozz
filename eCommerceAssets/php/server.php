@@ -315,8 +315,18 @@ if (isset($_POST['pagamento']))
 			$tot = number_format($values["item_quantity"] * $values["item_price"], 2);
 			
 			//inserimento nella tabella ordini
-			$query = "INSERT INTO ordini (ProdottoID, ClienteID, NomeCliente, CognomeCliente, EmailSpedizione,	TelefonoSpedizione, IndirizzoSpedizione, CittaSpedizione, ProvinciaSpedizione, CapSpedizione ,NomeProdotto, NumProdotto, DataOrdine, TotaleOrdine) 
-			VALUES ('$item_id', '$customer', '$fname', '$cname', '$email', '$phone', '$address', '$city', '$state', '$zip', '$item_name', '$item_quantity', '$OGGI' ,'$tot')";
+			$query = "INSERT INTO ordini (ClienteID, NomeDestinatario, CognomeDestinatario, EmailSpedizione,	TelefonoSpedizione, IndirizzoSpedizione, CittaSpedizione, ProvinciaSpedizione, CapSpedizione, DataOrdine, TotaleOrdine) 
+			VALUES ('$customer', '$fname', '$cname', '$email', '$phone', '$address', '$city', '$state', '$zip', '$OGGI' ,'$tot')";
+  			mysqli_query($db, $query) or die(mysqli_error($db));
+			
+			//seleziono l'ultimo ordine
+			$sql_id = "SELECT MAX(OrdineID) AS ordineMax FROM ordini";
+			$res_id = mysqli_query($db, $sql_id);	  
+			$results = mysqli_fetch_array($res_id);
+			$ordineMax = $results['ordineMax'];
+			
+			$query = "INSERT INTO dettaglioordini (ProdottoID, OrdineID, NumPezzi) 
+			VALUES ('$item_id', '$ordineMax' ,'$item_quantity')";
   			mysqli_query($db, $query) or die(mysqli_error($db));
 			
 			//prendo la quantità del prodotto
@@ -330,12 +340,6 @@ if (isset($_POST['pagamento']))
 			//diminuisco la quantità del prodotto comprato
 			$query = "UPDATE prodotti SET Quantita = '$quantita_prod' WHERE ProdottoID = '$item_id';";
 			mysqli_query($db, $query) or die(mysqli_error($db));
-			
-			//seleziono l'ultimo ordine
-			$sql_id = "SELECT MAX(OrdineID) AS ordineMax FROM ordini";
-			$res_id = mysqli_query($db, $sql_id);	  
-			$results = mysqli_fetch_array($res_id);
-			$ordineMax = $results['ordineMax'];
 			
 			$newDate = date("Y-m-d", strtotime($expmonth));
 			
