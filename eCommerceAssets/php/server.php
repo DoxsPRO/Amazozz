@@ -4,6 +4,9 @@ session_start();
 $username = "";
 $email    = "";
 $errors = array(); 
+
+$params = session_get_cookie_params();
+setcookie("PHPSESSID", session_id(), 0, $params["path"], $params["domain"], true );
  
 // connessione al database
 //$db = mysqli_connect('localhost', 'ecommercegalilei', '', 'my_ecommercegalilei');
